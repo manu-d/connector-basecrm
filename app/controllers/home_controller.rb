@@ -23,7 +23,7 @@ class HomeController < ApplicationController
           organization.date_filtering_limit ||= Time.now
         end
       end
-      
+
       organization.save
 
       if !old_sync_state && organization.sync_enabled
@@ -45,7 +45,7 @@ class HomeController < ApplicationController
   end
 
   def redirect_to_external
-    redirect_to 'https://path/to/external/app'
+    redirect_to 'https://app.futuresimple.com/sales'
   end
 
 end
