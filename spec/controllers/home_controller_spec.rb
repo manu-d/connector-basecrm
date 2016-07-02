@@ -21,7 +21,6 @@ describe HomeController, :type => :controller do
       before {
         allow_any_instance_of(Maestrano::Connector::Rails::SessionHelper).to receive(:is_admin?).and_return(false)
       }
-
       it { expect(subject).to redirect_to back_path }
     end
 

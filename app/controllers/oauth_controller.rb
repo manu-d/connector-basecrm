@@ -6,7 +6,7 @@ class OauthController < ApplicationController
 
   def request_omniauth
     if is_admin
-      # TODO
+      
       # Perform oauth request here. The oauth process should be able to
       # remember the organization, either by a param in the request or using
       # a session

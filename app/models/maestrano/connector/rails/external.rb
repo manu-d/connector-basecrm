@@ -2,8 +2,7 @@ class Maestrano::Connector::Rails::External
   include Maestrano::Connector::Rails::Concerns::External
 
   def self.external_name
-    # TODO
-    # Returns the name of the external app
+    "BaseCRM"
   end
 
   def self.get_client(organization)
