@@ -9,7 +9,9 @@
     # The api-sandbox allows you to easily test integration scenarios.
     # More details on http://api-sandbox.maestrano.io
     #
-    config.environment = Settings[tenant][:environment]
+    config.environment = 'test'
+
+    # Settings[tenant][:environment]
 
     # ==> Application host
     # This is your application host (e.g: my-app.com) which is ultimately
