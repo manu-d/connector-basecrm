@@ -1,12 +1,12 @@
-app_host: 'http://localhost:3001/'
+app_host: 'https://a438c33b.ngrok.io'
 
 encryption_key1: 'This is a key that is 256 bits!!'
 encryption_key2: 'This is a key that is 256 bits!!'
 
 default:
   environment: 'local'
-  api_host: 'http://localhost:3000'
+  api_host: 'http://localhost:5678'
 
 maestrano-uat:
   environment: 'local'
-  api_host: 'http://localhost:3000'
+  api_host: 'http://localhost:5678'

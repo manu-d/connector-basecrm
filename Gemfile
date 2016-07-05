@@ -17,6 +17,11 @@ gem 'sinatra', require: nil
 gem 'sidekiq'
 gem 'sidekiq-cron'
 gem 'slim'
+
+gem 'oauth2'
+gem 'basecrm'
+
+
 group :production, :uat do
   gem 'activerecord-jdbcpostgresql-adapter', platforms: :jruby
   gem 'pg', platforms: :ruby
