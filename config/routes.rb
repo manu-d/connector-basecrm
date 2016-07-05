@@ -9,6 +9,11 @@ Rails.application.routes.draw do
   put 'home/update' => 'home#update'
   post 'home/synchronize' => 'home#synchronize'
 
+  match 'auth/:provider/request', to: 'oauth#request_omniauth', via: [:get, :post]
+  match 'auth/:provider/callback', to: 'oauth#create_omniauth', via: [:get, :post]
+  match 'auth/failure', to: redirect('/'), via: [:get, :post]
+  match 'signout_omniauth', to: 'oauth#destroy_omniauth', as: 'signout_omniauth', via: [:get, :post]
+
   get 'synchronizations/index' => 'synchronizations#index'
   get 'shared_entities/index' => 'shared_entities#index'
 

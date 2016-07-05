@@ -11,7 +11,7 @@
 # Ignore the default SQLite database.
 /db/*.sqlite3
 /db/*.sqlite3-journal
-dump.rdb
+/dump.rdb
 
 <% end -%>
 # Ignore all logfiles and tempfiles.
