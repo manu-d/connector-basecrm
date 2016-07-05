@@ -17,6 +17,8 @@ gem 'sinatra', require: nil
 gem 'sidekiq'
 gem 'sidekiq-cron'
 gem 'slim'
+
+gem 'oauth2'
 gem 'basecrm'
 
 
