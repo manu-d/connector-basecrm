@@ -6,14 +6,9 @@ class Maestrano::Connector::Rails::External
   end
 
   def self.get_client(organization)
-    # TODO
-    # Returns a client for the external application for the given organization
-    # e.g
-    # SomeName.new :oauth_token => organization.oauth_token,
+    BaseCRM::Client.new access_token: organization.oauth_token
     # refresh_token: organization.refresh_token,
     # instance_url: organization.instance_url,
-    # client_id: ENV[''],
-    # client_secret: ENV['']
   end
 
   # Return an array of all the entities that the connector can synchronize
@@ -25,5 +20,10 @@ class Maestrano::Connector::Rails::External
     # e.g %w(person, tasks_list)
     #  will synchronized Entities::Person and Entities::TasksList
     []
+  end
+
+  def self.fetch_company(organization)
+    client = BaseCRM::Client.new access_token: organization.oauth_token
+    response = client.accounts.self    
   end
 end

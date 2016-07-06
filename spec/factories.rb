@@ -1,6 +1,6 @@
 FactoryGirl.define do
 
-  factory :organization, class: Maestrano::Connector::Rails::Organization do
+  factory :organization, class: Organization do
     name "My company"
     tenant "default"
     sequence(:uid) { |n| "cld-11#{n}" }

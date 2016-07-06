@@ -15,12 +15,11 @@ class OauthController < ApplicationController
   def create_omniauth
     org_uid = params[:state]
     organization = Organization.find_by_uid_and_tenant(org_uid, current_user.tenant)
-
     if organization && is_admin?(current_user, organization)
       client = BaseClient.obtain_token
       if params[:code].present?
         token = client.auth_code.get_token(params[:code], redirect_uri: BaseClient::RED_URI)
-        organization.from_omniauth(token)
+        manager = OrganizationManager.update(organization, token)
       end
     end
     redirect_to root_url
