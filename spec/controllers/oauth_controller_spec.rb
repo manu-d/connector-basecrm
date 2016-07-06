@@ -10,7 +10,7 @@ describe OauthController, :type => :controller do
 
     context 'when not admin' do
       before {
-        allow_any_instance_of(ApplicationHelper).to receive(:is_admin).and_return(false)
+        allow_any_instance_of(Maestrano::Connector::Rails::SessionHelper).to receive(:is_admin).and_return(false)
       }
 
       it {expect(subject).to redirect_to(root_url)}
@@ -18,10 +18,12 @@ describe OauthController, :type => :controller do
 
     context 'when admin' do
       before {
-        allow_any_instance_of(ApplicationHelper).to receive(:is_admin).and_return(true)
+        allow_any_instance_of(Maestrano::Connector::Rails::SessionHelper).to receive(:is_admin).and_return(true)
       }
 
-      it {expect(subject).to redirect_to('http://test.host/auth/basecrm?state=uid-123')}
+      it "Redirects to Base authorize endpoint" do
+        expect(subject.redirect_url).to match(/https:\/\/api.getbase.com\/oauth2\/authorize.+?state=uid-123$/)
+      end
     end
   end
 
@@ -66,7 +68,7 @@ describe OauthController, :type => :controller do
       context 'when admin' do
         before {
           allow_any_instance_of(Maestrano::Connector::Rails::SessionHelper).to receive(:is_admin?).and_return(true)
-          allow_any_instance_of(Maestrano::Connector::Rails::Organization).to receive(:from_omniauth)
+          #allow_any_instance_of(Maestrano::Connector::Rails::Organization).to receive(:from_omniauth)
           allow(Maestrano::Connector::Rails::External).to receive(:fetch_company).and_return({'Name' => 'lala', 'Id' => 'idd'})
         }
 
