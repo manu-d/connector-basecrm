@@ -11,7 +11,7 @@ class OauthController < ApplicationController
                                   site: "https://api.getbase.com",
                                   authorize_url: "/oauth2/authorize?#{auth_params}"
                                  )
-      redirect_to client.auth_code.authorize_url(redirect_uri: "https://a438c33b.ngrok.io/auth/baseCRM/callback"), id: current_user.id
+      redirect_to client.auth_code.authorize_url(redirect_uri: "https://c1571d2d.ngrok.io/auth/baseCRM/callback"), id: current_user.id
     else
       redirect_to root_url
     end
@@ -28,7 +28,7 @@ class OauthController < ApplicationController
                                   token_url: "/oauth2/token"
                                  )
       if params[:code].present?
-        token = client.auth_code.get_token(params[:code], redirect_uri: "https://a438c33b.ngrok.io/auth/baseCRM/callback")
+        token = client.auth_code.get_token(params[:code], redirect_uri: "https://c1571d2d.ngrok.io/auth/baseCRM/callback")
         organization.oauth_uid = "baseCRM-001"
         organization.oauth_token = token.token
         organization.refresh_token = token.refresh_token
