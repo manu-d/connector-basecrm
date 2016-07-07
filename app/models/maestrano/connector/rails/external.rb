@@ -15,15 +15,15 @@ class Maestrano::Connector::Rails::External
   # If you add new entities, you need to generate
   # a migration to add them to existing organizations
   def self.entities_list
-    # TODO
+
     # The names in this list should match the names of your entities class
     # e.g %w(person, tasks_list)
     #  will synchronized Entities::Person and Entities::TasksList
-    []
+    %w(contacts contacts products)
   end
 
   def self.fetch_company(organization)
     client = BaseCRM::Client.new access_token: organization.oauth_token
-    response = client.accounts.self    
+    response = client.accounts.self
   end
 end

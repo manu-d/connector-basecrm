@@ -4,12 +4,16 @@ class OrganizationManager
     @token = token
   end
 
-  #The sevice updates the organization oauth_uid, oauth_token, refresh_token and oauth_provider fields. 
+  #The sevice updates the organization oauth_uid, oauth_token, refresh_token and oauth_provider fields.
   def self.update(organization, token)
     new(organization, token)
     organization.from_omniauth(token)
     company = Maestrano::Connector::Rails::External.fetch_company(organization)
     organization.update(oauth_uid: company.id)
+  end
+
+  def show_organization
+    organization
   end
 
   private
