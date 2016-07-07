@@ -11,15 +11,11 @@ class Maestrano::Connector::Rails::External
     # instance_url: organization.instance_url,
   end
 
-  # Return an array of all the entities that the connector can synchronize
-  # If you add new entities, you need to generate
-  # a migration to add them to existing organizations
   def self.entities_list
-
     # The names in this list should match the names of your entities class
     # e.g %w(person, tasks_list)
     #  will synchronized Entities::Person and Entities::TasksList
-    %w(contacts contacts products)
+    %w(contact product)
   end
 
   def self.fetch_company(organization)
