@@ -4,6 +4,7 @@ FactoryGirl.define do
     name "My company"
     tenant "default"
     sequence(:uid) { |n| "cld-11#{n}" }
+    oauth_token 'df4Kehd87e02f15aaf1910gr9690d56be64736cd44d439b726bf725e665f2736'
     oauth_uid 'sfuiy765'
     oauth_provider 'this_app'
   end

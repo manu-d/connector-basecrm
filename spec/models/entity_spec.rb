@@ -48,14 +48,14 @@ describe Maestrano::Connector::Rails::Entity do
       end
 
       it 'returns the entities' do
-        expect(subject.get_external_entities(nil)).to eql("parsed entity hash")
+        expect(subject.get_external_entities(nil)).to eq "parsed entity hash"
       end
     end
 
 
     describe 'create_external_entity' do
       it 'Uses RestClient to post a new entity' do
-        expect(subject.create_external_entity({}, external_name)).to eql('test http request')
+        expect(subject.create_external_entity({}, external_name)).to eq 'test http request'
       end
     end
 
