@@ -6,12 +6,12 @@ class Maestrano::Connector::Rails::Entity < Maestrano::Connector::Rails::EntityB
     Maestrano::Connector::Rails::ConnectorLogger.log('info', @organization, "Fetching #{Maestrano::Connector::Rails::External.external_name} #{self.class.external_entity_name.pluralize}")
     if @opts[:full_sync] || !last_synchronization_date
       entity_name = self.class.external_entity_name
-      entities = BaseClient.new(@organization).get_entities(entity_name)
+      entities = BaseAPIManager.new(@organization).get_entities(entity_name)
     else
       raise 'Cannot perform synchronizations less than a minute apart' unless Time.now - last_synchronization_date > 1.minute
       #TODO a filter needs to be added to fetch only after a last_synchronization_date
       entity_name = self.class.external_entity_name
-      entities = BaseClient.new(@organization).get_entities(entity_name)
+      entities = BaseAPIManager.new(@organization).get_entities(entity_name)
     end
     # This method should return only entities that have been updated since the last_synchronization_date
     # It should also implements an option to do a full synchronization when @opts[:full_sync] == true or when there is no last_synchronization_date
@@ -21,12 +21,12 @@ class Maestrano::Connector::Rails::Entity < Maestrano::Connector::Rails::EntityB
 
   def create_external_entity(mapped_connec_entity, external_entity_name)
     Maestrano::Connector::Rails::ConnectorLogger.log('info', @organization, "Sending create #{external_entity_name}: #{mapped_connec_entity} to #{Maestrano::Connector::Rails::External.external_name}")
-    entities = BaseClient.new(@organization).create_entities(mapped_connec_entity, external_entity_name)
+    entities = BaseAPIManager.new(@organization).create_entities(mapped_connec_entity, external_entity_name)
   end
 
   def update_external_entity(mapped_connec_entity, external_id, external_entity_name)
     Maestrano::Connector::Rails::ConnectorLogger.log('info', @organization, "Sending update #{external_entity_name} (id=#{external_id}): #{mapped_connec_entity} to #{Maestrano::Connector::Rails::External.external_name}")
-    entities = BaseClient.new(@organization).update_entities(mapped_connec_entity, external_id, external_entity_name)
+    entities = BaseAPIManager.new(@organization).update_entities(mapped_connec_entity, external_id, external_entity_name)
   end
 
   def self.id_from_external_entity_hash(entity)

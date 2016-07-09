@@ -14,14 +14,14 @@
       <img src="./assets/0.10.0/loading.gif" alt="loading"/>
     </div>
     <div id="wrapper" style="display:none;">
-      <div class="timestamp">Generated <abbr class="timeago" title="2016-07-09T16:40:36+01:00">2016-07-09T16:40:36+01:00</abbr></div>
+      <div class="timestamp">Generated <abbr class="timeago" title="2016-07-09T17:12:33+01:00">2016-07-09T17:12:33+01:00</abbr></div>
       <ul class="group_tabs"></ul>
 
       <div id="content">
         <div class="file_list_container" id="AllFiles">
   <h2>
     <span class="group_name">All Files</span>
-    (<span class="covered_percent"><span class="green">95.52%</span></span>
+    (<span class="covered_percent"><span class="green">95.56%</span></span>
      covered at
      <span class="covered_strength">
        <span class="green">
@@ -31,9 +31,9 @@
   </h2>
   <a name="AllFiles"></a>
   <div>
-    <b>38</b> files in total.
-    <b>491</b> relevant lines. 
-    <span class="green"><b>469</b> lines covered</span> and
+    <b>40</b> files in total.
+    <b>496</b> relevant lines. 
+    <span class="green"><b>474</b> lines covered</span> and
     <span class="red"><b>22</b> lines missed </span>
   </div>
   <table class="file_list">
@@ -161,13 +161,23 @@
       </tr>
       
       <tr>
+        <td class="strong"><a href="#453272ff42753700efec53a6128ba5353965f746" class="src_link" title="app/services/base_api_manager.rb">app/services/base_api_manager.rb</a></td>
+        <td class="green strong">100.0 %</td>
+        <td>47</td>
+        <td>18</td>
+        <td>18</td>
+        <td>0</td>
+        <td>1.1</td>
+      </tr>
+      
+      <tr>
         <td class="strong"><a href="#d8ac30975ccd49b169e63af6ba72a4504a4807f6" class="src_link" title="app/services/base_client.rb">app/services/base_client.rb</a></td>
         <td class="green strong">100.0 %</td>
-        <td>65</td>
-        <td>23</td>
-        <td>23</td>
+        <td>24</td>
+        <td>8</td>
+        <td>8</td>
         <td>0</td>
-        <td>1.2</td>
+        <td>1.4</td>
       </tr>
       
       <tr>
@@ -401,13 +411,23 @@
       </tr>
       
       <tr>
+        <td class="strong"><a href="#37d124649fceb5e52e2ab6844931fd882ad8d94c" class="src_link" title="spec/models/services/base_api_manager_spec.rb">spec/models/services/base_api_manager_spec.rb</a></td>
+        <td class="green strong">100.0 %</td>
+        <td>28</td>
+        <td>13</td>
+        <td>13</td>
+        <td>0</td>
+        <td>1.8</td>
+      </tr>
+      
+      <tr>
         <td class="strong"><a href="#02d90030f74deb2ec7ad151932c397f7facea8e9" class="src_link" title="spec/models/services/base_client_spec.rb">spec/models/services/base_client_spec.rb</a></td>
         <td class="green strong">100.0 %</td>
-        <td>45</td>
-        <td>23</td>
-        <td>23</td>
+        <td>22</td>
+        <td>12</td>
+        <td>12</td>
         <td>0</td>
-        <td>1.4</td>
+        <td>1.0</td>
       </tr>
       
       <tr>
@@ -1837,7 +1857,7 @@
         <li class="missed" data-hits="0" data-linenumber="9">
           
           
-          <code class="ruby">      entities = BaseClient.new(@organization).get_entities(entity_name)</code>
+          <code class="ruby">      entities = BaseAPIManager.new(@organization).get_entities(entity_name)</code>
         </li>
       
         <li class="never" data-hits="" data-linenumber="10">
@@ -1867,7 +1887,7 @@
         <li class="missed" data-hits="0" data-linenumber="14">
           
           
-          <code class="ruby">      entities = BaseClient.new(@organization).get_entities(entity_name)</code>
+          <code class="ruby">      entities = BaseAPIManager.new(@organization).get_entities(entity_name)</code>
         </li>
       
         <li class="never" data-hits="" data-linenumber="15">
@@ -1927,7 +1947,7 @@
         <li class="missed" data-hits="0" data-linenumber="24">
           
           
-          <code class="ruby">    entities = BaseClient.new(@organization).create_entities(mapped_connec_entity, external_entity_name)</code>
+          <code class="ruby">    entities = BaseAPIManager.new(@organization).create_entities(mapped_connec_entity, external_entity_name)</code>
         </li>
       
         <li class="never" data-hits="" data-linenumber="25">
@@ -1957,7 +1977,7 @@
         <li class="missed" data-hits="0" data-linenumber="29">
           
           
-          <code class="ruby">    entities = BaseClient.new(@organization).update_entities(mapped_connec_entity, external_id, external_entity_name)</code>
+          <code class="ruby">    entities = BaseAPIManager.new(@organization).update_entities(mapped_connec_entity, external_id, external_entity_name)</code>
         </li>
       
         <li class="never" data-hits="" data-linenumber="30">
@@ -2378,13 +2398,13 @@
   </pre>
 </div>
       
-        <div class="source_table" id="d8ac30975ccd49b169e63af6ba72a4504a4807f6">
+        <div class="source_table" id="453272ff42753700efec53a6128ba5353965f746">
   <div class="header">
-    <h3>app/services/base_client.rb</h3>
+    <h3>app/services/base_api_manager.rb</h3>
     <h4><span class="green">100.0 %</span> covered</h4>
     <div>
-      <b>23</b> relevant lines. 
-      <span class="green"><b>23</b> lines covered</span> and
+      <b>18</b> relevant lines. 
+      <span class="green"><b>18</b> lines covered</span> and
       <span class="red"><b>0</b> lines missed.</span>
     </div>
   </div>
@@ -2407,7 +2427,7 @@
         <li class="covered" data-hits="1" data-linenumber="3">
           <span class="hits">1</span>
           
-          <code class="ruby">class BaseClient</code>
+          <code class="ruby">class BaseAPIManager</code>
         </li>
       
         <li class="never" data-hits="" data-linenumber="4">
@@ -2440,343 +2460,397 @@
           <code class="ruby"></code>
         </li>
       
-        <li class="covered" data-hits="1" data-linenumber="9">
-          <span class="hits">1</span>
-          
-          <code class="ruby">  RED_URI = &quot;https://8dc7342d.ngrok.io/auth/baseCRM/callback&quot;</code>
-        </li>
-      
-        <li class="never" data-hits="" data-linenumber="10">
-          
-          
-          <code class="ruby"></code>
-        </li>
-      
-        <li class="never" data-hits="" data-linenumber="11">
-          
-          
-          <code class="ruby">  #Requests oauth2 code</code>
-        </li>
-      
-        <li class="covered" data-hits="1" data-linenumber="12">
-          <span class="hits">1</span>
-          
-          <code class="ruby">  def self.authorize(auth_params)</code>
-        </li>
-      
-        <li class="covered" data-hits="3" data-linenumber="13">
-          <span class="hits">3</span>
-          
-          <code class="ruby">    OAuth2::Client.new(ENV[&#39;client_id&#39;],</code>
-        </li>
-      
-        <li class="never" data-hits="" data-linenumber="14">
-          
-          
-          <code class="ruby">                       ENV[&#39;client_secret&#39;],</code>
-        </li>
-      
-        <li class="never" data-hits="" data-linenumber="15">
-          
-          
-          <code class="ruby">                       site: &quot;https://api.getbase.com&quot;,</code>
-        </li>
-      
-        <li class="never" data-hits="" data-linenumber="16">
-          
-          
-          <code class="ruby">                       authorize_url: &quot;/oauth2/authorize?#{auth_params}&quot;</code>
-        </li>
-      
-        <li class="never" data-hits="" data-linenumber="17">
-          
-          
-          <code class="ruby">                      )</code>
-        </li>
-      
-        <li class="never" data-hits="" data-linenumber="18">
-          
-          
-          <code class="ruby">  end</code>
-        </li>
-      
-        <li class="never" data-hits="" data-linenumber="19">
-          
-          
-          <code class="ruby">  #Obtains oauth2 token</code>
-        </li>
-      
-        <li class="covered" data-hits="1" data-linenumber="20">
-          <span class="hits">1</span>
-          
-          <code class="ruby">  def self.obtain_token</code>
-        </li>
-      
-        <li class="covered" data-hits="2" data-linenumber="21">
-          <span class="hits">2</span>
-          
-          <code class="ruby">    OAuth2::Client.new(ENV[&#39;client_id&#39;],</code>
-        </li>
-      
-        <li class="never" data-hits="" data-linenumber="22">
-          
-          
-          <code class="ruby">                       ENV[&#39;client_secret&#39;],</code>
-        </li>
-      
-        <li class="never" data-hits="" data-linenumber="23">
-          
-          
-          <code class="ruby">                       site: &quot;https://api.getbase.com&quot;,</code>
-        </li>
-      
-        <li class="never" data-hits="" data-linenumber="24">
-          
-          
-          <code class="ruby">                       token_url: &quot;/oauth2/token&quot;</code>
-        </li>
-      
-        <li class="never" data-hits="" data-linenumber="25">
-          
-          
-          <code class="ruby">                      )</code>
-        </li>
-      
-        <li class="never" data-hits="" data-linenumber="26">
-          
-          
-          <code class="ruby">  end</code>
-        </li>
-      
-        <li class="never" data-hits="" data-linenumber="27">
+        <li class="never" data-hits="" data-linenumber="9">
           
           
           <code class="ruby">  #Fetches all the resources for the specific entity</code>
         </li>
       
-        <li class="covered" data-hits="1" data-linenumber="28">
+        <li class="covered" data-hits="1" data-linenumber="10">
           <span class="hits">1</span>
           
           <code class="ruby">  def get_entities(entity_name = &quot;&quot;)</code>
         </li>
       
-        <li class="covered" data-hits="1" data-linenumber="29">
+        <li class="covered" data-hits="1" data-linenumber="11">
           <span class="hits">1</span>
           
           <code class="ruby">    headers = {</code>
         </li>
       
-        <li class="never" data-hits="" data-linenumber="30">
+        <li class="never" data-hits="" data-linenumber="12">
           
           
           <code class="ruby">      &quot;Accept&quot; =&gt; &quot;application/json&quot;,</code>
         </li>
       
-        <li class="never" data-hits="" data-linenumber="31">
+        <li class="never" data-hits="" data-linenumber="13">
           
           
           <code class="ruby">      &quot;Authorization&quot; =&gt; &quot;Bearer #{organization.oauth_token}&quot;</code>
         </li>
       
-        <li class="never" data-hits="" data-linenumber="32">
+        <li class="never" data-hits="" data-linenumber="14">
           
           
           <code class="ruby">    }</code>
         </li>
       
-        <li class="covered" data-hits="1" data-linenumber="33">
+        <li class="covered" data-hits="1" data-linenumber="15">
           <span class="hits">1</span>
           
           <code class="ruby">  response = RestClient::Request.execute method: :get, url: &quot;https://api.getbase.com/v2/#{entity_name.downcase.pluralize}&quot;, headers: headers</code>
         </li>
       
-        <li class="covered" data-hits="1" data-linenumber="34">
+        <li class="covered" data-hits="1" data-linenumber="16">
           <span class="hits">1</span>
           
           <code class="ruby">  items = JSON.parse(response)[&#39;items&#39;]</code>
         </li>
       
-        <li class="never" data-hits="" data-linenumber="35">
+        <li class="never" data-hits="" data-linenumber="17">
           
           
           <code class="ruby">  end</code>
         </li>
       
-        <li class="never" data-hits="" data-linenumber="36">
+        <li class="never" data-hits="" data-linenumber="18">
           
           
           <code class="ruby">  #creates an entity with the parameters passed</code>
         </li>
       
-        <li class="covered" data-hits="1" data-linenumber="37">
+        <li class="covered" data-hits="1" data-linenumber="19">
           <span class="hits">1</span>
           
           <code class="ruby">  def create_entities(mapped_connec_entity, external_entity_name)</code>
         </li>
       
-        <li class="covered" data-hits="1" data-linenumber="38">
+        <li class="covered" data-hits="1" data-linenumber="20">
           <span class="hits">1</span>
           
           <code class="ruby">    headers = {</code>
         </li>
       
-        <li class="never" data-hits="" data-linenumber="39">
+        <li class="never" data-hits="" data-linenumber="21">
           
           
           <code class="ruby">      &quot;Accept&quot; =&gt; &quot;application/json&quot;,</code>
         </li>
       
-        <li class="never" data-hits="" data-linenumber="40">
+        <li class="never" data-hits="" data-linenumber="22">
           
           
           <code class="ruby">      &quot;Content-Type&quot; =&gt; &quot;application/json&quot;,</code>
         </li>
       
-        <li class="never" data-hits="" data-linenumber="41">
+        <li class="never" data-hits="" data-linenumber="23">
           
           
           <code class="ruby">      &quot;Authorization&quot; =&gt; &quot;Bearer #{organization.oauth_token}&quot;</code>
         </li>
       
-        <li class="never" data-hits="" data-linenumber="42">
+        <li class="never" data-hits="" data-linenumber="24">
           
           
           <code class="ruby">    }</code>
         </li>
       
-        <li class="never" data-hits="" data-linenumber="43">
+        <li class="never" data-hits="" data-linenumber="25">
           
           
           <code class="ruby"></code>
         </li>
       
-        <li class="covered" data-hits="1" data-linenumber="44">
+        <li class="covered" data-hits="1" data-linenumber="26">
           <span class="hits">1</span>
           
           <code class="ruby">    body = mapped_connec_entity</code>
         </li>
       
-        <li class="never" data-hits="" data-linenumber="45">
+        <li class="never" data-hits="" data-linenumber="27">
           
           
           <code class="ruby"></code>
         </li>
       
-        <li class="covered" data-hits="1" data-linenumber="46">
+        <li class="covered" data-hits="1" data-linenumber="28">
           <span class="hits">1</span>
           
           <code class="ruby">    response = RestClient::Request.execute method: :post, url: &quot;https://api.getbase.com/v2/#{external_entity_name.downcase.pluralize}&quot;,</code>
         </li>
       
-        <li class="never" data-hits="" data-linenumber="47">
+        <li class="never" data-hits="" data-linenumber="29">
           
           
           <code class="ruby">                                                   payload: body, headers: headers</code>
         </li>
       
-        <li class="never" data-hits="" data-linenumber="48">
+        <li class="never" data-hits="" data-linenumber="30">
           
           
           <code class="ruby">  end</code>
         </li>
       
-        <li class="never" data-hits="" data-linenumber="49">
+        <li class="never" data-hits="" data-linenumber="31">
           
           
           <code class="ruby">  #updates an existing entity with the parameters providedß</code>
         </li>
       
-        <li class="covered" data-hits="1" data-linenumber="50">
+        <li class="covered" data-hits="1" data-linenumber="32">
           <span class="hits">1</span>
           
           <code class="ruby">  def update_entities(mapped_connec_entity, external_id, external_entity_name)</code>
         </li>
       
-        <li class="covered" data-hits="1" data-linenumber="51">
+        <li class="covered" data-hits="1" data-linenumber="33">
           <span class="hits">1</span>
           
           <code class="ruby">    headers = {</code>
         </li>
       
-        <li class="never" data-hits="" data-linenumber="52">
+        <li class="never" data-hits="" data-linenumber="34">
           
           
           <code class="ruby">      &quot;Accept&quot; =&gt; &quot;application/json&quot;,</code>
         </li>
       
-        <li class="never" data-hits="" data-linenumber="53">
+        <li class="never" data-hits="" data-linenumber="35">
           
           
           <code class="ruby">      &quot;Content-Type&quot; =&gt; &quot;application/json&quot;,</code>
         </li>
       
-        <li class="never" data-hits="" data-linenumber="54">
+        <li class="never" data-hits="" data-linenumber="36">
           
           
           <code class="ruby">      &quot;Authorization&quot; =&gt; &quot;Bearer #{organization.oauth_token}&quot;</code>
         </li>
       
-        <li class="never" data-hits="" data-linenumber="55">
+        <li class="never" data-hits="" data-linenumber="37">
           
           
           <code class="ruby">    }</code>
         </li>
       
-        <li class="never" data-hits="" data-linenumber="56">
+        <li class="never" data-hits="" data-linenumber="38">
           
           
           <code class="ruby"></code>
         </li>
       
-        <li class="covered" data-hits="1" data-linenumber="57">
+        <li class="covered" data-hits="1" data-linenumber="39">
           <span class="hits">1</span>
           
           <code class="ruby">    body = mapped_connec_entity</code>
         </li>
       
-        <li class="never" data-hits="" data-linenumber="58">
+        <li class="never" data-hits="" data-linenumber="40">
           
           
           <code class="ruby"></code>
         </li>
       
-        <li class="covered" data-hits="1" data-linenumber="59">
+        <li class="covered" data-hits="1" data-linenumber="41">
           <span class="hits">1</span>
           
           <code class="ruby">    response = RestClient::Request.execute method: :put, url: &quot;https://api.getbase.com/v2/#{external_entity_name.downcase.pluralize}/#{external_id}&quot;,</code>
         </li>
       
-        <li class="never" data-hits="" data-linenumber="60">
+        <li class="never" data-hits="" data-linenumber="42">
           
           
           <code class="ruby">                                                   payload: body, headers: headers</code>
         </li>
       
-        <li class="never" data-hits="" data-linenumber="61">
+        <li class="never" data-hits="" data-linenumber="43">
           
           
           <code class="ruby">  end</code>
         </li>
       
-        <li class="never" data-hits="" data-linenumber="62">
+        <li class="never" data-hits="" data-linenumber="44">
           
           
           <code class="ruby"></code>
         </li>
       
-        <li class="covered" data-hits="1" data-linenumber="63">
+        <li class="covered" data-hits="1" data-linenumber="45">
           <span class="hits">1</span>
           
           <code class="ruby">  private</code>
         </li>
       
-        <li class="covered" data-hits="1" data-linenumber="64">
+        <li class="covered" data-hits="1" data-linenumber="46">
           <span class="hits">1</span>
           
           <code class="ruby">  attr_reader :organization</code>
         </li>
       
-        <li class="never" data-hits="" data-linenumber="65">
+        <li class="never" data-hits="" data-linenumber="47">
+          
+          
+          <code class="ruby">end</code>
+        </li>
+      
+    </ol>
+  </pre>
+</div>
+      
+        <div class="source_table" id="d8ac30975ccd49b169e63af6ba72a4504a4807f6">
+  <div class="header">
+    <h3>app/services/base_client.rb</h3>
+    <h4><span class="green">100.0 %</span> covered</h4>
+    <div>
+      <b>8</b> relevant lines. 
+      <span class="green"><b>8</b> lines covered</span> and
+      <span class="red"><b>0</b> lines missed.</span>
+    </div>
+  </div>
+  
+  <pre>
+    <ol>
+      
+        <li class="covered" data-hits="1" data-linenumber="1">
+          <span class="hits">1</span>
+          
+          <code class="ruby">require &quot;singleton&quot;</code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="2">
+          
+          
+          <code class="ruby"></code>
+        </li>
+      
+        <li class="covered" data-hits="1" data-linenumber="3">
+          <span class="hits">1</span>
+          
+          <code class="ruby">class BaseClient</code>
+        </li>
+      
+        <li class="covered" data-hits="1" data-linenumber="4">
+          <span class="hits">1</span>
+          
+          <code class="ruby">  include Singleton</code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="5">
+          
+          
+          <code class="ruby"></code>
+        </li>
+      
+        <li class="covered" data-hits="1" data-linenumber="6">
+          <span class="hits">1</span>
+          
+          <code class="ruby">  RED_URI = &quot;https://8dc7342d.ngrok.io/auth/baseCRM/callback&quot;</code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="7">
+          
+          
+          <code class="ruby"></code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="8">
+          
+          
+          <code class="ruby">  #Requests oauth2 code</code>
+        </li>
+      
+        <li class="covered" data-hits="1" data-linenumber="9">
+          <span class="hits">1</span>
+          
+          <code class="ruby">  def self.authorize(auth_params)</code>
+        </li>
+      
+        <li class="covered" data-hits="3" data-linenumber="10">
+          <span class="hits">3</span>
+          
+          <code class="ruby">    OAuth2::Client.new(ENV[&#39;client_id&#39;],</code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="11">
+          
+          
+          <code class="ruby">                       ENV[&#39;client_secret&#39;],</code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="12">
+          
+          
+          <code class="ruby">                       site: &quot;https://api.getbase.com&quot;,</code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="13">
+          
+          
+          <code class="ruby">                       authorize_url: &quot;/oauth2/authorize?#{auth_params}&quot;</code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="14">
+          
+          
+          <code class="ruby">                      )</code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="15">
+          
+          
+          <code class="ruby">  end</code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="16">
+          
+          
+          <code class="ruby">  #Obtains oauth2 token</code>
+        </li>
+      
+        <li class="covered" data-hits="1" data-linenumber="17">
+          <span class="hits">1</span>
+          
+          <code class="ruby">  def self.obtain_token</code>
+        </li>
+      
+        <li class="covered" data-hits="2" data-linenumber="18">
+          <span class="hits">2</span>
+          
+          <code class="ruby">    OAuth2::Client.new(ENV[&#39;client_id&#39;],</code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="19">
+          
+          
+          <code class="ruby">                       ENV[&#39;client_secret&#39;],</code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="20">
+          
+          
+          <code class="ruby">                       site: &quot;https://api.getbase.com&quot;,</code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="21">
+          
+          
+          <code class="ruby">                       token_url: &quot;/oauth2/token&quot;</code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="22">
+          
+          
+          <code class="ruby">                      )</code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="23">
+          
+          
+          <code class="ruby">  end</code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="24">
           
           
           <code class="ruby">end</code>
@@ -7754,13 +7828,199 @@
   </pre>
 </div>
       
+        <div class="source_table" id="37d124649fceb5e52e2ab6844931fd882ad8d94c">
+  <div class="header">
+    <h3>spec/models/services/base_api_manager_spec.rb</h3>
+    <h4><span class="green">100.0 %</span> covered</h4>
+    <div>
+      <b>13</b> relevant lines. 
+      <span class="green"><b>13</b> lines covered</span> and
+      <span class="red"><b>0</b> lines missed.</span>
+    </div>
+  </div>
+  
+  <pre>
+    <ol>
+      
+        <li class="covered" data-hits="1" data-linenumber="1">
+          <span class="hits">1</span>
+          
+          <code class="ruby">require &#39;spec_helper&#39;</code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="2">
+          
+          
+          <code class="ruby"></code>
+        </li>
+      
+        <li class="covered" data-hits="1" data-linenumber="3">
+          <span class="hits">1</span>
+          
+          <code class="ruby">describe BaseAPIManager do</code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="4">
+          
+          
+          <code class="ruby"></code>
+        </li>
+      
+        <li class="covered" data-hits="1" data-linenumber="5">
+          <span class="hits">1</span>
+          
+          <code class="ruby">  context &quot;Uses RestClient to query the BaseCRM API:&quot; do</code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="6">
+          
+          
+          <code class="ruby"></code>
+        </li>
+      
+        <li class="covered" data-hits="1" data-linenumber="7">
+          <span class="hits">1</span>
+          
+          <code class="ruby">    before do</code>
+        </li>
+      
+        <li class="covered" data-hits="3" data-linenumber="8">
+          <span class="hits">3</span>
+          
+          <code class="ruby">      @organization = build(:organization, uid: nil, oauth_token: nil, refresh_token: nil, oauth_provider: nil)</code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="9">
+          
+          
+          <code class="ruby">      #RestClient is called internally by BaseClient every instance method invocation.</code>
+        </li>
+      
+        <li class="covered" data-hits="6" data-linenumber="10">
+          <span class="hits">6</span>
+          
+          <code class="ruby">      allow(RestClient::Request).to receive(:execute) { &quot;test http request&quot;}</code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="11">
+          
+          
+          <code class="ruby">      # BaseClient#get_entities parses the response using JSON.parse</code>
+        </li>
+      
+        <li class="covered" data-hits="4" data-linenumber="12">
+          <span class="hits">4</span>
+          
+          <code class="ruby">      allow(JSON).to receive(:parse) { {&quot;items&quot; =&gt; &quot;parsed response&quot;}}</code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="13">
+          
+          
+          <code class="ruby">    end</code>
+        </li>
+      
+        <li class="covered" data-hits="1" data-linenumber="14">
+          <span class="hits">1</span>
+          
+          <code class="ruby">    it &quot;can retrieve entities&quot; do</code>
+        </li>
+      
+        <li class="covered" data-hits="1" data-linenumber="15">
+          <span class="hits">1</span>
+          
+          <code class="ruby">        expect(BaseAPIManager.new(@organization).get_entities(&quot;entity&quot;)).to eq &quot;parsed response&quot;</code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="16">
+          
+          
+          <code class="ruby">    end</code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="17">
+          
+          
+          <code class="ruby"></code>
+        </li>
+      
+        <li class="covered" data-hits="1" data-linenumber="18">
+          <span class="hits">1</span>
+          
+          <code class="ruby">    it &quot;can create entities&quot; do</code>
+        </li>
+      
+        <li class="covered" data-hits="1" data-linenumber="19">
+          <span class="hits">1</span>
+          
+          <code class="ruby">      expect(BaseAPIManager.new(@organization).create_entities({&quot;mapped_connec_entity&quot; =&gt; &quot;test&quot;}, &quot;contact&quot;)).</code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="20">
+          
+          
+          <code class="ruby">        to eq (&quot;test http request&quot;)</code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="21">
+          
+          
+          <code class="ruby">    end</code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="22">
+          
+          
+          <code class="ruby"></code>
+        </li>
+      
+        <li class="covered" data-hits="1" data-linenumber="23">
+          <span class="hits">1</span>
+          
+          <code class="ruby">    it &quot;can update entities&quot; do</code>
+        </li>
+      
+        <li class="covered" data-hits="1" data-linenumber="24">
+          <span class="hits">1</span>
+          
+          <code class="ruby">      expect(BaseAPIManager.new(@organization).update_entities({&quot;mapped_connec_entity&quot; =&gt; &quot;test&quot;}, &quot;1&quot;, &quot;contact&quot;)).</code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="25">
+          
+          
+          <code class="ruby">        to eq (&quot;test http request&quot;)</code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="26">
+          
+          
+          <code class="ruby">    end</code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="27">
+          
+          
+          <code class="ruby">  end</code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="28">
+          
+          
+          <code class="ruby">end</code>
+        </li>
+      
+    </ol>
+  </pre>
+</div>
+      
         <div class="source_table" id="02d90030f74deb2ec7ad151932c397f7facea8e9">
   <div class="header">
     <h3>spec/models/services/base_client_spec.rb</h3>
     <h4><span class="green">100.0 %</span> covered</h4>
     <div>
-      <b>23</b> relevant lines. 
-      <span class="green"><b>23</b> lines covered</span> and
+      <b>12</b> relevant lines. 
+      <span class="green"><b>12</b> lines covered</span> and
       <span class="red"><b>0</b> lines missed.</span>
     </div>
   </div>
@@ -7895,144 +8155,6 @@
         </li>
       
         <li class="never" data-hits="" data-linenumber="22">
-          
-          
-          <code class="ruby"></code>
-        </li>
-      
-        <li class="covered" data-hits="1" data-linenumber="23">
-          <span class="hits">1</span>
-          
-          <code class="ruby">  context &quot;Uses RestClient to query the BaseCRM API:&quot; do</code>
-        </li>
-      
-        <li class="covered" data-hits="1" data-linenumber="24">
-          <span class="hits">1</span>
-          
-          <code class="ruby">    before do</code>
-        </li>
-      
-        <li class="covered" data-hits="3" data-linenumber="25">
-          <span class="hits">3</span>
-          
-          <code class="ruby">      @organization = build(:organization, uid: nil, oauth_token: nil, refresh_token: nil, oauth_provider: nil)</code>
-        </li>
-      
-        <li class="never" data-hits="" data-linenumber="26">
-          
-          
-          <code class="ruby">      #RestClient is called internally by BaseClient every instance method invocation.</code>
-        </li>
-      
-        <li class="covered" data-hits="6" data-linenumber="27">
-          <span class="hits">6</span>
-          
-          <code class="ruby">      allow(RestClient::Request).to receive(:execute) { &quot;test http request&quot;}</code>
-        </li>
-      
-        <li class="never" data-hits="" data-linenumber="28">
-          
-          
-          <code class="ruby">      # BaseClient#get_entities parses the response using JSON.parse</code>
-        </li>
-      
-        <li class="covered" data-hits="4" data-linenumber="29">
-          <span class="hits">4</span>
-          
-          <code class="ruby">      allow(JSON).to receive(:parse) { {&quot;items&quot; =&gt; &quot;parsed response&quot;}}</code>
-        </li>
-      
-        <li class="never" data-hits="" data-linenumber="30">
-          
-          
-          <code class="ruby">    end</code>
-        </li>
-      
-        <li class="covered" data-hits="1" data-linenumber="31">
-          <span class="hits">1</span>
-          
-          <code class="ruby">    it &quot;can retrieve entities&quot; do</code>
-        </li>
-      
-        <li class="covered" data-hits="1" data-linenumber="32">
-          <span class="hits">1</span>
-          
-          <code class="ruby">        expect(BaseClient.new(@organization).get_entities(&quot;entity&quot;)).to eq &quot;parsed response&quot;</code>
-        </li>
-      
-        <li class="never" data-hits="" data-linenumber="33">
-          
-          
-          <code class="ruby">    end</code>
-        </li>
-      
-        <li class="never" data-hits="" data-linenumber="34">
-          
-          
-          <code class="ruby"></code>
-        </li>
-      
-        <li class="covered" data-hits="1" data-linenumber="35">
-          <span class="hits">1</span>
-          
-          <code class="ruby">    it &quot;can create entities&quot; do</code>
-        </li>
-      
-        <li class="covered" data-hits="1" data-linenumber="36">
-          <span class="hits">1</span>
-          
-          <code class="ruby">      expect(BaseClient.new(@organization).create_entities({&quot;mapped_connec_entity&quot; =&gt; &quot;test&quot;}, &quot;contact&quot;)).</code>
-        </li>
-      
-        <li class="never" data-hits="" data-linenumber="37">
-          
-          
-          <code class="ruby">        to eq (&quot;test http request&quot;)</code>
-        </li>
-      
-        <li class="never" data-hits="" data-linenumber="38">
-          
-          
-          <code class="ruby">    end</code>
-        </li>
-      
-        <li class="never" data-hits="" data-linenumber="39">
-          
-          
-          <code class="ruby"></code>
-        </li>
-      
-        <li class="covered" data-hits="1" data-linenumber="40">
-          <span class="hits">1</span>
-          
-          <code class="ruby">    it &quot;can update entities&quot; do</code>
-        </li>
-      
-        <li class="covered" data-hits="1" data-linenumber="41">
-          <span class="hits">1</span>
-          
-          <code class="ruby">      expect(BaseClient.new(@organization).update_entities({&quot;mapped_connec_entity&quot; =&gt; &quot;test&quot;}, &quot;1&quot;, &quot;contact&quot;)).</code>
-        </li>
-      
-        <li class="never" data-hits="" data-linenumber="42">
-          
-          
-          <code class="ruby">        to eq (&quot;test http request&quot;)</code>
-        </li>
-      
-        <li class="never" data-hits="" data-linenumber="43">
-          
-          
-          <code class="ruby">    end</code>
-        </li>
-      
-        <li class="never" data-hits="" data-linenumber="44">
-          
-          
-          <code class="ruby">  end</code>
-        </li>
-      
-        <li class="never" data-hits="" data-linenumber="45">
           
           
           <code class="ruby">end</code>
