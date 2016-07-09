@@ -45,7 +45,7 @@ class Maestrano::Connector::Rails::Entity < Maestrano::Connector::Rails::EntityB
   end
 
   def self.inactive_from_external_entity_hash?(entity)
-    # This method return true is entity is inactive in the external application
+    # This method return true if entity is inactive in the external application
     entity['data']['customer_status'] != 'current'
   end
 end
