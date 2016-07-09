@@ -2,7 +2,7 @@
 
 - SSO with Maestrano  
 - OAuth2 handshake with Base
-- Synchronizations successfull 
+- Synchronizations successful
 - Data Shared updating correctly after Synch with BaseCRM for:
         - Contact
         - Product
