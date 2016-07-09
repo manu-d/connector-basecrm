@@ -1,8 +1,8 @@
 == README
 
-- SSO with Maestrano 
+- SSO with Maestrano  
 - OAuth2 handshake with Base
 - Synchronizations successfull 
 ------ WIP Mapping, some testing and documentation
 
-- Testing locally using Foreman and ngrok 
+Testing locally using Foreman and ngrok 
