@@ -31,7 +31,6 @@ class Maestrano::Connector::Rails::Entity < Maestrano::Connector::Rails::EntityB
 
   def self.id_from_external_entity_hash(entity)
     # This method return the id from an external_entity_hash
-    p "*************________________#{entity}"
     entity['data']['id']
   end
 
