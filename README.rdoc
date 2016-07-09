@@ -3,6 +3,9 @@
 - SSO with Maestrano  
 - OAuth2 handshake with Base
 - Synchronizations successfull 
------- WIP Mapping, some testing and documentation
+- Data Shared updating correctly after Synch with BaseCRM for:
+        - Contact
+        - Product
+------ WIP Complex Entities, more testing and documentation
 
 Testing locally using Foreman and ngrok 
