@@ -1,5 +1,5 @@
 
-class Entities::Product < Maestrano::Connector::Rails::Entity
+class Entities::Item < Maestrano::Connector::Rails::Entity
   def self.connec_entity_name
     'Item'
   end
@@ -9,7 +9,7 @@ class Entities::Product < Maestrano::Connector::Rails::Entity
   end
 
   def self.mapper_class
-    ProductMapper
+    ItemMapper
   end
 
   def self.object_name_from_connec_entity_hash(entity)
@@ -21,10 +21,8 @@ class Entities::Product < Maestrano::Connector::Rails::Entity
   end
 end
 
-class ProductMapper
+class ItemMapper
   extend HashMapper
-
-
 
   map from('/id'), to('/id')
   map from('/name'), to('/name')

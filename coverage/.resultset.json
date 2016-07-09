@@ -422,9 +422,10 @@
       ],
       "/Users/marcobagnasco/Desktop/test/test_connector/app/helpers/application_helper.rb": [
         1,
+        1,
         null
       ],
-      "/Users/marcobagnasco/Desktop/test/test_connector/app/models/entities/contact.rb": [
+      "/Users/marcobagnasco/Desktop/test/test_connector/app/models/entities/person.rb": [
         1,
         1,
         1,
@@ -435,7 +436,7 @@
         null,
         null,
         1,
-        1,
+        2,
         null,
         null,
         1,
@@ -457,8 +458,13 @@
         1,
         1,
         1,
+        null,
         1,
         1,
+        1,
+        1,
+        1,
+        null,
         1,
         null
       ],
@@ -496,7 +502,8 @@
         null,
         1,
         null,
-        0,
+        1,
+        1,
         null,
         null,
         1,
@@ -527,12 +534,7 @@
         2,
         null,
         null,
-        null,
-        null,
         1,
-        null,
-        null,
-        null,
         2,
         null,
         null,
@@ -543,6 +545,6 @@
         null
       ]
     },
-    "timestamp": 1468023282
+    "timestamp": 1468068707
   }
 }

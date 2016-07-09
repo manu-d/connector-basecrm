@@ -7,15 +7,10 @@ class Maestrano::Connector::Rails::External
 
   def self.get_client(organization)
     BaseCRM::Client.new access_token: organization.oauth_token
-    # refresh_token: organization.refresh_token,
-    # instance_url: organization.instance_url,
   end
 
   def self.entities_list
-    # The names in this list should match the names of your entities class
-    # e.g %w(person, tasks_list)
-    #  will synchronized Entities::Person and Entities::TasksList
-    %w(contact product)
+    %w(person item)
   end
 
   def self.fetch_company(organization)

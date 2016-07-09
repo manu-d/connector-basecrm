@@ -1,14 +1,14 @@
 require 'spec_helper'
 
-describe Entities::Contact do
+describe Entities::Person do
 
 describe 'class methods' do
-  subject { Entities::Contact }
+  subject { Entities::Person }
 
   it { expect(subject.connec_entity_name).to eql('Person') }
   it { expect(subject.external_entity_name).to eql('Contact') }
   it { expect(subject.object_name_from_connec_entity_hash({'first_name' => 'A', 'last_name' => 'contact'})).to eql('A contact') }
-  it { expect(subject.object_name_from_external_entity_hash({'first_name' => 'A', 'last_name' => 'contact'})).to eql('A contact') }
+  it { expect(subject.object_name_from_external_entity_hash({"data" => {'first_name' => 'A', 'last_name' => 'contact'}})).to eql('A contact') }
 end
 
 describe 'instance methods' do
@@ -19,32 +19,34 @@ describe 'instance methods' do
   let(:connec_client) { Maestrano::Connector::Rails::ConnecHelper.get_client(organization) }
   let(:external_client) { Maestrano::Connector::Rails::External.get_client(organization) }
   let(:opts) { {} }
-  subject { Entities::Contact.new(organization, connec_client, external_client, opts) }
+  subject { Entities::Person.new(organization, connec_client, external_client, opts) }
 
   describe 'external to connec!' do
     let(:external_hash) {
       {
       "data"=> {
-        "id"=> 1,
-        "contact_id"=> null,
-        "name"=> "Design Services Company",
-        "first_name"=> null,
-        "last_name"=> null,
-        "customer_status"=> "none",
-        "prospect_status"=> "none",
-        "title"=> null,
-        "email"=> null
+        "id"=> 134706023,
+        "contact_id"=> nil,
+        "first_name"=> "John",
+        "last_name"=> "Smith",
+        "title"=> "Mr",
+        "email"=> 'test@email.com',
+        "address" => {
+            "city" => "London"
+        }
+      }
     }
   }
-}
 
-    let (:mapped_external_hash) {   #to connec!
+    let (:mapped_external_hash) {
       {
-        "id" => [{'id' => '2345uoi', 'provider' => organization.oauth_provider, 'realm' => organization.oauth_uid}],
+        "id" => [{'id' => 134706023, 'provider' => organization.oauth_provider, 'realm' => organization.oauth_uid}],
         "first_name" => "John",
+        "last_name" => "Smith",
         "title" => "Mr",
+        "email" => "test@email.com",
         "address_work" => {
-          "billing2" => {
+          "billing" => {
             "city" => 'London'
           }
         }
@@ -60,7 +62,7 @@ describe 'instance methods' do
         "first_name" => "John",
         "title" => "Mr",
         "address_work" => {
-          "billing2" => {
+          "billing" => {
             "city" => 'London'
           }
         }
@@ -68,10 +70,13 @@ describe 'instance methods' do
     }
 
     let(:mapped_connec_hash) {
-      {
-        "Salutation" => 'Mr',
-        "FirstName" => 'John',
-        "City" => 'London'
+      { "data" => {
+        "title" => 'Mr',
+        "first_name" => 'John',
+        "address" => {
+          "city" => 'London'
+          }
+        }
       }.with_indifferent_access
     }
 
