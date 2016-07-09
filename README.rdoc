@@ -1,4 +1,6 @@
-== README
+== README                   
+
+{<img src="https://travis-ci.org/MarcoCode/ruby-connector.svg?branch=master" alt="Build Status" />}[https://travis-ci.org/MarcoCode/ruby-connector]
 
 - SSO with Maestrano  
 - OAuth2 handshake with Base
