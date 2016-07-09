@@ -21,3 +21,5 @@ dump.rdb
 
 # Ignore application configuration
 /config/application.yml
+# Database is copied using a script for Travis CI integration
+/config/database.yml
