@@ -1,4 +1,8 @@
-== README
+== README                   
+
+{<img src="https://travis-ci.org/MarcoCode/ruby-connector.svg?branch=master" alt="Build Status" />}[https://travis-ci.org/MarcoCode/ruby-connector] {<img src="https://codeclimate.com/github/MarcoCode/ruby-connector/badges/gpa.svg" />}[https://codeclimate.com/github/MarcoCode/ruby-connector]
+----------------------------------------------
+{<img src="https://coveralls.io/repos/github/MarcoCode/ruby-connector/badge.svg?branch=master" alt="Coverage Status" />}[https://coveralls.io/github/MarcoCode/ruby-connector?branch=master] 
 
 - SSO with Maestrano  
 - OAuth2 handshake with Base
