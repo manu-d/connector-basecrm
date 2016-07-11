@@ -14,4 +14,6 @@
 
 ------ WIP Filters, more testing and documentation
 
+A link to the WIP documentation can be found {HERE}[https://www.hecticmojo.com/ruby-connector-docs/]
+
 Testing locally using Foreman and ngrok 
