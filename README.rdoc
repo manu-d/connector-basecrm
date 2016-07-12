@@ -1,19 +1,21 @@
-== README                   
+== README
 ----------------------------------------------
-{<img src="https://travis-ci.org/MarcoCode/ruby-connector.svg?branch=master" alt="Build Status" />}[https://travis-ci.org/MarcoCode/ruby-connector] {<img src="https://codeclimate.com/github/MarcoCode/ruby-connector/badges/gpa.svg" />}[https://codeclimate.com/github/MarcoCode/ruby-connector] {<img src="https://coveralls.io/repos/github/MarcoCode/ruby-connector/badge.svg?branch=master" alt="Coverage Status" />}[https://coveralls.io/github/MarcoCode/ruby-connector?branch=master] 
+{<img src="https://travis-ci.org/MarcoCode/ruby-connector.svg?branch=master" alt="Build Status" />}[https://travis-ci.org/MarcoCode/ruby-connector] {<img src="https://codeclimate.com/github/MarcoCode/ruby-connector/badges/gpa.svg" />}[https://codeclimate.com/github/MarcoCode/ruby-connector] {<img src="https://coveralls.io/repos/github/MarcoCode/ruby-connector/badge.svg?branch=master" alt="Coverage Status" />}[https://coveralls.io/github/MarcoCode/ruby-connector?branch=master]
 ----------------------------------------------
-===== The aim of the connector is to synchronise Maestrano Connec! API with BaseCRM API. 
+===== The aim of the connector is to synchronise Maestrano Connec! API with BaseCRM API.
 
 
-- SSO with Maestrano  
+- SSO with Maestrano
 - OAuth2 handshake with Base
 - Synchronizations successful
-- Data Shared updating correctly after Synch with BaseCRM for:
+- Data Shared not fully updating after Synch with BaseCRM for:
         - People and Organizations ----------> Contacts
-        - Items                    ----------> Producs 
+        - Items                    ----------> Producs
 
------- WIP Filters, more testing and documentation
+------ WIP Filters, Debugging and Documentation
 
 A link to the WIP documentation can be found {HERE}[https://www.hecticmojo.com/ruby-connector-docs/]
 
-Testing locally using Foreman and ngrok 
+A live app deployed on Heroku can be accessed {HERE}[https://base-crm-connector.herokuapp.com/]
+
+Testing locally using Foreman and Ngrok

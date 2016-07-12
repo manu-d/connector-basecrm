@@ -15,9 +15,10 @@ class Entities::SubEntities::Contact < Maestrano::Connector::Rails::SubEntityBas
     }
   end
 
-  # def self.references
-  #   {'contact' => %w(organization_id)}
-  # end
+  def self.id_from_external_entity_hash(entity)
+    # This method return the id from an external_entity_hash
+    entity['data']['id']
+  end
 
   def self.object_name_from_external_entity_hash(entity)
     if entity['data']['is_organization']

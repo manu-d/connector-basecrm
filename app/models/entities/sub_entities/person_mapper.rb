@@ -9,8 +9,6 @@ class Entities::SubEntities::PersonMapper
   # end
 
   #For the sake of simplicity not many fields have been mapped
-  map from('updated_at'), to('data/updated_at')
-  map from('created_at'), to('data/created_at')
   map from('title'), to('data/title')
   map from('first_name'), to('data/first_name')
   map from('last_name'), to('data/last_name')
@@ -20,6 +18,4 @@ class Entities::SubEntities::PersonMapper
   map from('address_work/billing/city'), to('data/address/city')
   map from('address_work/billing/postal_code'), to('data/address/postal_code')
   map from('address_work/billing/country'), to('data/address/country')
-
-  map from('/status'), to('/customer_status')
 end
