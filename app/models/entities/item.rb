@@ -36,7 +36,4 @@ class ItemMapper
 
   map from('purchase_price/total_amount') {|value| BigDecimal.new(value).to_f}, to('data/cost', &:to_s)
   map from('purchase_price/currency'), to('data/cost_currency')
-
-  map from('created_at'), to('data/created_at')
-  map from('updated_at'), to('data/updated_at')
 end

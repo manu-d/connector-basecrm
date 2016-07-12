@@ -58,9 +58,7 @@ describe 'instance methods' do
         "purchase_price" => {
           "total_amount" => 799.99,
           "currency" => "GBP"
-        },
-        "created_at" => "2014-11-30T08:14:44Z",
-        "updated_at" => "2014-11-30T08:14:44Z"
+        }
       }.with_indifferent_access
     }
 
@@ -100,9 +98,7 @@ describe 'instance methods' do
             }
           ],
           "cost" => "110",
-          "cost_currency" => "GBP",
-          "created_at" => "2014-11-30T08:14:44Z",
-          "updated_at" => "2014-11-30T08:14:44Z"
+          "cost_currency" => "GBP"
         }
       }.with_indifferent_access
     }
