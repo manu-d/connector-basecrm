@@ -29,7 +29,7 @@ class ItemMapper
   map from('reference'), to('data/sku')
   map from('description'), to('data/description')
 
-  map from('status') {|value| value == true ? "ACTIVE" : "INACTIVE"}, to('data/active') {|value| "ACTIVE" ? true : false}
+  map from('status') {|value| value == true ? "ACTIVE" : "INACTIVE"}, to('data/active') {|value| :active.to_s.upcase ? true : false}
 
   map from('sale_price/total_amount') {|value| BigDecimal.new(value).to_f}, to("data/prices[0]/amount", &:to_s), default: 0
   map from('sale_price/currency'), to("data/prices[0]/currency")
