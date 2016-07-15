@@ -33,7 +33,7 @@ describe OauthController, :type => :controller do
       allow_any_instance_of(Maestrano::Connector::Rails::SessionHelper).to receive(:current_user).and_return(user)
     }
     let(:uid) { 'uid-123' }
-    subject { get :create_omniauth, provider: 'basecrm', state: uid, code: "test123" }
+    subject { get :create_omniauth, provider: 'basecrm', state: uid }
     let(:callback) { post :create_omniauth, provider: 'basecrm', state: uid, code: "test123"}
 
     context 'when no organization exists' do
@@ -51,9 +51,9 @@ describe OauthController, :type => :controller do
     end
 
     context 'when organization is found' do
-      let!(:organization) { create(:organization, tenant: 'default', uid: "default") }
+      let!(:organization) { create(:organization, tenant: 'default', uid: uid) }
       let(:token) { OpenStruct.new(token: "123", refresh_token: "456")}
-      let(:company) { OpenStruct.new(id: "id12345")}
+      let!(:company) { OpenStruct.new(id: "id12345")}
       let(:client) { double(BaseCRM::Client)}
 
       context 'when not admin' do
@@ -71,16 +71,16 @@ describe OauthController, :type => :controller do
         before {
           allow_any_instance_of(Maestrano::Connector::Rails::SessionHelper).to receive(:is_admin?).and_return(true)
           allow_any_instance_of(OAuth2::Strategy::AuthCode).to receive(:get_token) { token}
-          allow(organization).to receive(:update_omniauth).with(token) { "Test"}
+          allow(organization).to receive(:update_omniauth).with(token) { "Test Call"}
           allow(BaseCRM::Client).to receive(:new).with(access_token: "123") { client}
           allow(client).to receive(:accounts) { client}
           allow(client).to receive(:self)
-          allow(Maestrano::Connector::Rails::External).to receive(:fetch_company) { company}
+          #allow_any_instance_of(Organization).to receive(:update).with(oauth_uid: "test-uid")
         }
 
         it 'updates the organization with data from oauth and api calls' do
           callback
-          expect(organization.oauth_token).to eq "123"
+          expect(organization).to receive(:update_omniauth).with(token)
         end
       end
     end
