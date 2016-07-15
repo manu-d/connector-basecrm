@@ -1,13 +1,6 @@
 class Entities::SubEntities::PersonMapper
   extend HashMapper
 
-  # before_denormalize do |input, output|
-  #   p "before_denormalize _________**************** IN -> #{input} OUT -> #{output}"
-  #   output[:is_person] = true
-  #
-  #   input
-  # end
-
   #For the sake of simplicity not many fields have been mapped
   map from('title'), to('data/title')
   map from('first_name'), to('data/first_name')

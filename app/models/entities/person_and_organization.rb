@@ -50,4 +50,8 @@ class Entities::PersonAndOrganization < Maestrano::Connector::Rails::ComplexEnti
     end
     modelled_hash
   end
+
+  # def self.find_or_create_idmap(organization_and_id)
+  #   super(organization_and_id.except(:external_id))
+  # end
 end

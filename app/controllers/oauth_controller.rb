@@ -19,7 +19,7 @@ class OauthController < ApplicationController
       client = BaseClient.obtain_token
       if params[:code].present?
         token = client.auth_code.get_token(params[:code], redirect_uri: BaseClient::RED_URI)
-        manager = OrganizationManager.update(organization, token)
+        organization.update_omniauth(token)
       end
     end
     redirect_to root_url
