@@ -71,16 +71,15 @@ describe OauthController, :type => :controller do
         before {
           allow_any_instance_of(Maestrano::Connector::Rails::SessionHelper).to receive(:is_admin?).and_return(true)
           allow_any_instance_of(OAuth2::Strategy::AuthCode).to receive(:get_token) { token}
-          allow(organization).to receive(:update_omniauth).with(token) { "Test Call"}
+          expect_any_instance_of(Organization).to receive(:update_omniauth) { organization.oauth_uid = "test-uid"}
           allow(BaseCRM::Client).to receive(:new).with(access_token: "123") { client}
           allow(client).to receive(:accounts) { client}
           allow(client).to receive(:self)
-          #allow_any_instance_of(Organization).to receive(:update).with(oauth_uid: "test-uid")
         }
 
         it 'updates the organization with data from oauth and api calls' do
           callback
-          expect(organization).to receive(:update_omniauth).with(token)
+          expect(organization.oauth_uid).to eq "test-uid"
         end
       end
     end
