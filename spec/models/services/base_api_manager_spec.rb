@@ -12,7 +12,11 @@ describe BaseAPIManager do
   context "Uses RestClient to query the BaseCRM API:" do
 
     before do
-      allow_any_instance_of(DataParser).to receive(:from_base) { "Parsed Response"}
+      allow_any_instance_of(DataParser).to receive(:from_base_collection) { "Parsed Response"}
+      allow_any_instance_of(DataParser).to receive(:from_base_single) { "Parsed Response"}
+      allow_any_instance_of(DataParser).to receive(:to_base) { "Parsed Response"}
+      allow(JSON).to receive(:parse) { "Parsed JSON"}
+      allow(JSON).to receive(:generate) { "Generated JSON"}
     end
 
     #The API manager gets rid of the 'data' field before returning the array of entities
@@ -25,13 +29,13 @@ describe BaseAPIManager do
     it "can create entities" do
       allow(RestClient::Request).to receive(:execute).with(rest_client_arguments_post) { "test post request"}
       expect(BaseAPIManager.new(organization).create_entities({"payload" => "test"}, "contact")).
-        to eq ("test post request")
+        to eq ("Parsed Response")
     end
 
     it "can update entities" do
       allow(RestClient::Request).to receive(:execute).with(rest_client_arguments_put) { "test put request"}
       expect(BaseAPIManager.new(organization).update_entities({"payload" => "test"}, "1", "contact")).
-        to eq ("test put request")
+        to eq ("Parsed Response")
     end
   end
 end

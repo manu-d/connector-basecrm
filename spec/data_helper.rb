@@ -27,6 +27,13 @@ def api_get_call_contacts
       \"links\":{\"self\":\"https://api.getbase.com/v2/contacts?page=1&per_page=25\"}}}"
 end
 
+def api_response_from_post
+  '{"meta":{"type":"product"},"data":{"id":470988,"updated_at":"2016-07-20T15:34:24Z",
+  "created_at":"2016-07-20T15:34:24Z","active":true,"description":"Includes more storage options",
+  "name":"Enterprise NEW Plan","sku":"enterprise-plan","prices":[{"currency":"PLN","amount":"2599.99"},
+  {"currency":"USD","amount":"2599.99"}],"max_discount":15,"max_markup":null,"cost":"1599.99","cost_currency":"USD"}}'
+end
+
 def mapped_connec_entity
   { "id" =>  12345678, "first_name" => "John", "last_name" => "Smith"}
 end

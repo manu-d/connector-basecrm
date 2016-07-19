@@ -42,7 +42,7 @@ class Entities::PersonAndOrganization < Maestrano::Connector::Rails::ComplexEnti
     modelled_hash = {'Contact' => { 'Person' => [], 'Organization' => [] }}
 
     contacts.each do |contact|
-      if contact['data']['is_organization']
+      if contact['is_organization']
         modelled_hash['Contact']['Organization'] << contact
       else
         modelled_hash['Contact']['Person'] << contact

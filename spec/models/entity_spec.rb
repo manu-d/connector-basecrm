@@ -25,9 +25,9 @@ describe Maestrano::Connector::Rails::Entity do
     end
 
     describe 'inactive_from_external_entity_hash?' do
-      it { expect(subject.inactive_from_external_entity_hash?({'customer_status' => 'past'})).to eql(true) }
+      #at the moment there is no way to track deleted contacts from Base
+      it { expect(subject.inactive_from_external_entity_hash?({'customer_status' => 'past'})).to eql(false) }
     end
-
   end
 
   describe 'instance methods' do
@@ -54,15 +54,19 @@ describe Maestrano::Connector::Rails::Entity do
       end
     end
 
+    #Considering that DataParser is tested in its own spec file, the next two specs
+    #are testing that the return is the response from RestClient::Request#execute
     describe 'create_external_entity' do
-      it 'Uses RestClient to post a new entity' do
-        expect(subject.create_external_entity({}, external_name)).to eq "{\"items\":[{\"data\":{\"id\":123456}},{\"data\":{\"id\":7891011}}]}"
+      it 'Posts using BaseAPIManager and returns the ID of the external entity' do
+        allow_any_instance_of(BaseAPIManager).to receive(:create_entities) { {'id' => 123456, "name" => "test entity"}}
+        expect(subject.create_external_entity({}, external_name)).to eq 123456
       end
     end
 
     describe 'update_external_entity' do
-      it 'calls update with the id' do
-        expect(subject.update_external_entity({}, '3456', external_name)).to eq "{\"items\":[{\"data\":{\"id\":123456}},{\"data\":{\"id\":7891011}}]}"
+      it 'PUTs using BaseAPIManager and returns the entity' do
+        allow_any_instance_of(BaseAPIManager).to receive(:update_entities) { {'id' => 123456, "name" => "test entity"}}
+        expect(subject.update_external_entity({}, '3456', external_name)).to eq({'id' => 123456, "name" => "test entity"})
       end
     end
   end

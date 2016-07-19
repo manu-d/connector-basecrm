@@ -3,7 +3,7 @@ require "singleton"
 class BaseClient
   include Singleton
 
-  RED_URI = "https://2fb0b7eb.ngrok.io/auth/baseCRM/callback"
+  RED_URI = "https://bc41e257.ngrok.io/auth/baseCRM/callback"
 
   #Requests oauth2 code
   def self.authorize(auth_params)

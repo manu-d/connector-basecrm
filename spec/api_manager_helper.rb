@@ -9,13 +9,13 @@ end
 def rest_client_arguments_post
   { method: :post,
     url: "https://api.getbase.com/v2/contacts",
-    payload: {"data" => {"payload" => "test"}},
+    payload: JSON.generate({"data" => {"payload" => "test"}}),
     headers: {"Accept"=>"application/json", "Content-Type"=>"application/json", "Authorization"=>"Bearer "}}
 end
 
 def rest_client_arguments_put
   { method: :put,
     url: "https://api.getbase.com/v2/contacts/1",
-    payload: {"data" => {"payload" => "test"}},
+    payload: JSON.generate({"data" => {"payload" => "test"}}),
     headers: {"Accept"=>"application/json", "Content-Type"=>"application/json", "Authorization"=>"Bearer "}}
 end

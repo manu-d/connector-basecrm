@@ -21,13 +21,15 @@ class Maestrano::Connector::Rails::Entity < Maestrano::Connector::Rails::EntityB
   def create_external_entity(mapped_connec_entity, external_entity_name)
     Maestrano::Connector::Rails::ConnectorLogger.log('info', @organization, "Sending create #{external_entity_name}: #{mapped_connec_entity} to #{Maestrano::Connector::Rails::External.external_name}")
     check_external_entity_name_presence(external_entity_name)
-    entities = BaseAPIManager.new(@organization).create_entities(mapped_connec_entity, external_entity_name)
+    entity = BaseAPIManager.new(@organization).create_entities(mapped_connec_entity, external_entity_name)
+    self.class.id_from_external_entity_hash(entity)
   end
 
   def update_external_entity(mapped_connec_entity, external_id, external_entity_name)
     Maestrano::Connector::Rails::ConnectorLogger.log('info', @organization, "Sending update #{external_entity_name} (id=#{external_id}): #{mapped_connec_entity} to #{Maestrano::Connector::Rails::External.external_name}")
     check_external_entity_name_presence(external_entity_name)
-    entities = BaseAPIManager.new(@organization).update_entities(mapped_connec_entity, external_id, external_entity_name)
+    entity = BaseAPIManager.new(@organization).update_entities(mapped_connec_entity, external_id, external_entity_name)
+    entity
   end
 
   def self.id_from_external_entity_hash(entity)
@@ -47,7 +49,7 @@ class Maestrano::Connector::Rails::Entity < Maestrano::Connector::Rails::EntityB
 
   def self.inactive_from_external_entity_hash?(entity)
     # This method return true if entity is inactive in the external application
-    entity['customer_status'] != 'current'
+    false
   end
 
   private

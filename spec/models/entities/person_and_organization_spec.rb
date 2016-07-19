@@ -25,7 +25,7 @@ describe Entities::PersonAndOrganization do
       let(:output_hash) {
         {
           "Person" => { "Contact" => [person]},
-          "Organization" => { "Contact" => [organization]} 
+          "Organization" => { "Contact" => [organization]}
         }
       }
 
@@ -36,8 +36,8 @@ describe Entities::PersonAndOrganization do
     end
 
     describe 'external_model_to_connec_model' do
-      let(:contact1) { { "data" => {'first_name' => 'Gary', 'is_organization' => false}} }
-      let(:contact2) { {"data" => {'name' => 'TestOptima', 'is_organization' => true}} }
+      let(:contact1) { {'first_name' => 'Gary', 'is_organization' => false} }
+      let(:contact2) { {'name' => 'TestOptima', 'is_organization' => true} }
 
       let(:external_hash) {
         {

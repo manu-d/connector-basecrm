@@ -1,5 +1,3 @@
-/ TODO
-/ Replace BaseCRM
 .home
   .banners
     .row
@@ -52,11 +50,11 @@
                     .col-md-1.link-step-action
                       %input{type: "checkbox", id: "#{k}", name: "#{k}", checked: v}
                     .col-md-6{style: 'padding-top: 5px;'}
-                      %label{:for => "#{k}"} #{k.to_s.humanize.pluralize}
+                      %label{:for => "#{k}"} #{beautify_complex_entities(k.to_s.humanize)}
                     -if is_admin
                       .col-md-5.text-right
                         - if v && @organization.oauth_uid && @organization.sync_enabled
-                          = link_to "Force a synchronization for #{k.to_s.humanize.pluralize} only", home_synchronize_path(opts: {only_entities: [k.to_s]}), method: :post, class: "btn btn-warning btn-sm"
+                          = link_to "Force a synchronization for #{beautify_complex_entities(k.to_s.humanize)} only", home_synchronize_path(opts: {only_entities: [k.to_s]}), method: :post, class: "btn btn-warning btn-sm"
             .spacer1
             .row
               .col-md-4
@@ -82,4 +80,4 @@
     - else
       .row
         .col-md-4.col-md-offset-4.center
-          = link_to "Link your Maestrano account", Maestrano::Connector::Rails::Engine.routes.url_helpers.default_maestrano_auth_saml_index_path(tenant: :default, group_id: 'cld-9gtu'), class: 'btn btn-warning'
+          = link_to "Link your Maestrano account", Maestrano::Connector::Rails::Engine.routes.url_helpers.default_maestrano_auth_saml_index_path(tenant: :default, group_id: 'cld-9ahi'), class: 'btn btn-warning'

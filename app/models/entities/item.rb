@@ -25,9 +25,16 @@ end
 class ItemMapper
   extend HashMapper
 
+  after_normalize do |input, output|
+    output['sku'] = input['reference'].present? ? input['reference'] : "NOSKU-#{(1..9).to_a.shuffle[0,5].join}"
+    output['cost'] = input['purchase_price']['total_amount'].present? ? input['purchase_price']['total_amount'].to_s : "0.0"
+    output
+  end
+
+  #map from Connec! to Base
   map from('name'), to('name')
   map from('reference'), to('sku')
-  map from('description'), to('description')
+  map from('description'), to('description'), default: "This item has no description"
 
   map from('status') {|value| value == true ? "ACTIVE" : "INACTIVE"}, to('active') {|value| :active.to_s.upcase ? true : false}
 

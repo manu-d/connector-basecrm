@@ -1,4 +1,5 @@
 class HomeController < ApplicationController
+
   def index
     @organization = current_organization
   end
@@ -47,5 +48,4 @@ class HomeController < ApplicationController
   def redirect_to_external
     redirect_to 'https://app.futuresimple.com/sales'
   end
-
 end
