@@ -18,22 +18,22 @@ class Entities::Item < Maestrano::Connector::Rails::Entity
   end
 
   def self.object_name_from_external_entity_hash(entity)
-    "#{entity['data']['name']}"
+    "#{entity['name']}"
   end
 end
 
 class ItemMapper
   extend HashMapper
 
-  map from('name'), to('data/name')
-  map from('reference'), to('data/sku')
-  map from('description'), to('data/description')
+  map from('name'), to('name')
+  map from('reference'), to('sku')
+  map from('description'), to('description')
 
-  map from('status') {|value| value == true ? "ACTIVE" : "INACTIVE"}, to('data/active') {|value| :active.to_s.upcase ? true : false}
+  map from('status') {|value| value == true ? "ACTIVE" : "INACTIVE"}, to('active') {|value| :active.to_s.upcase ? true : false}
 
-  map from('sale_price/total_amount') {|value| BigDecimal.new(value).to_f}, to("data/prices[0]/amount", &:to_s), default: 0
-  map from('sale_price/currency'), to("data/prices[0]/currency")
+  map from('sale_price/total_amount') {|value| BigDecimal.new(value).to_f}, to("prices[0]/amount", &:to_s), default: 0
+  map from('sale_price/currency'), to("prices[0]/currency")
 
-  map from('purchase_price/total_amount') {|value| BigDecimal.new(value).to_f}, to('data/cost', &:to_s)
-  map from('purchase_price/currency'), to('data/cost_currency')
+  map from('purchase_price/total_amount') {|value| BigDecimal.new(value).to_f}, to('cost', &:to_s)
+  map from('purchase_price/currency'), to('cost_currency')
 end

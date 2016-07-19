@@ -17,14 +17,14 @@ class Entities::SubEntities::Contact < Maestrano::Connector::Rails::SubEntityBas
 
   def self.id_from_external_entity_hash(entity)
     # This method return the id from an external_entity_hash
-    entity['data']['id']
+    entity['id']
   end
 
   def self.object_name_from_external_entity_hash(entity)
-    if entity['data']['is_organization']
-      "#{entity['data']['name']}"
+    if entity['is_organization']
+      "#{entity['name']}"
     else
-      "#{entity['data']['first_name']} #{entity['data']['last_name']}"
+      "#{entity['first_name']} #{entity['last_name']}"
     end
   end
 end

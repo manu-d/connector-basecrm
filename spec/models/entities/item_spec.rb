@@ -8,7 +8,7 @@ describe 'class methods' do
   it { expect(subject.connec_entity_name).to eql('Item') }
   it { expect(subject.external_entity_name).to eql('Product') }
   it { expect(subject.object_name_from_connec_entity_hash({'name' => 'A'})).to eql('A') }
-  it { expect(subject.object_name_from_external_entity_hash({"data" => {'name' => 'A'}})).to eql('A') }
+  it { expect(subject.object_name_from_external_entity_hash({'name' => 'A'})).to eql('A') }
 end
 
 describe 'instance methods' do
@@ -24,25 +24,23 @@ describe 'instance methods' do
   describe 'external to connec!' do
     let(:external_hash) {
         {
-          "data" => {
-            "id" => 1,
-            "name" => "Cloud Service",
-            "sku" => "cloud-sku",
-            "description" => "Amazing Service",
-            "active" => true,
-            "prices" => [
-              {
-                "amount" => "1599.99",
-                "currency" => "GBP"
-              }
-            ],
-            "cost" => "799.99",
-            "cost_currency" => "GBP",
-            "created_at" => "2014-11-30T08:14:44Z",
-            "updated_at" => "2014-11-30T08:14:44Z"
+          "id" => 1,
+          "name" => "Cloud Service",
+          "sku" => "cloud-sku",
+          "description" => "Amazing Service",
+          "active" => true,
+          "prices" => [
+            {
+              "amount" => "1599.99",
+              "currency" => "GBP"
+            }
+          ],
+          "cost" => "799.99",
+          "cost_currency" => "GBP",
+          "created_at" => "2014-11-30T08:14:44Z",
+          "updated_at" => "2014-11-30T08:14:44Z"
         }
       }
-    }
 
     let (:mapped_external_hash) {
       {
@@ -86,20 +84,19 @@ describe 'instance methods' do
   }
 
     let(:mapped_connec_hash) {
-      { "data" => {
-          "name" => "Cloud Service",
-          "sku" => "cloud-sku",
-          "description" => "Amazing Service",
-          "active" => true,
-          "prices" => [
-            {
-              "amount" => "1599.99",
-              "currency" => "GBP"
-            }
-          ],
-          "cost" => "110",
-          "cost_currency" => "GBP"
-        }
+      {
+        "name" => "Cloud Service",
+        "sku" => "cloud-sku",
+        "description" => "Amazing Service",
+        "active" => true,
+        "prices" => [
+          {
+            "amount" => "1599.99",
+            "currency" => "GBP"
+          }
+        ],
+        "cost" => "110",
+        "cost_currency" => "GBP"
       }.with_indifferent_access
     }
 

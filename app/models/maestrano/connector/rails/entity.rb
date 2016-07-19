@@ -32,22 +32,22 @@ class Maestrano::Connector::Rails::Entity < Maestrano::Connector::Rails::EntityB
 
   def self.id_from_external_entity_hash(entity)
     # This method return the id from an external_entity_hash
-    entity['data']['id']
+    entity['id']
   end
 
   def self.last_update_date_from_external_entity_hash(entity)
     # This method return the last update date from an external_entity_hash
-    entity['data']['updated_at']
+    entity['updated_at']
   end
 
   def self.creation_date_from_external_entity_hash(entity)
     # This method return the creation date from an external_entity_hash
-    entity['data']['created_at']
+    entity['created_at']
   end
 
   def self.inactive_from_external_entity_hash?(entity)
     # This method return true if entity is inactive in the external application
-    entity['data']['customer_status'] != 'current'
+    entity['customer_status'] != 'current'
   end
 
   private

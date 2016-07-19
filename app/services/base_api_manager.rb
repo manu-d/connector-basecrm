@@ -13,7 +13,8 @@ class BaseAPIManager
       "Authorization" => "Bearer #{organization.oauth_token}"
     }
   response = RestClient::Request.execute method: :get, url: "https://api.getbase.com/v2/#{entity_name.downcase.pluralize}", headers: headers
-  JSON.parse(response)['items']
+  #DataParser strips the response from 'items' and 'data' fields
+  DataParser.new.from_base(response)
   end
 
   #creates an entity with the parameters passed
@@ -24,7 +25,8 @@ class BaseAPIManager
       "Authorization" => "Bearer #{organization.oauth_token}"
     }
 
-    body = mapped_connec_entity
+    #DataParser adds the 'data' field before pushing to BaseCRM
+    body = DataParser.new.to_base(mapped_connec_entity)
 
     response = RestClient::Request.execute method: :post, url: "https://api.getbase.com/v2/#{external_entity_name.downcase.pluralize}",
                                                    payload: body, headers: headers
@@ -40,7 +42,7 @@ class BaseAPIManager
       "Authorization" => "Bearer #{organization.oauth_token}"
     }
 
-    body = mapped_connec_entity
+    body = DataParser.new.to_base(mapped_connec_entity)
 
     response = RestClient::Request.execute method: :put, url: "https://api.getbase.com/v2/#{external_entity_name.downcase.pluralize}/#{external_id}",
                                                    payload: body, headers: headers
