@@ -28,7 +28,6 @@ describe 'instance methods' do
           "name" => "Cloud Service",
           "sku" => "cloud-sku",
           "description" => "Amazing Service",
-          "active" => true,
           "prices" => [
             {
               "amount" => "1599.99",
@@ -48,7 +47,6 @@ describe 'instance methods' do
         "name" => "Cloud Service",
         "reference" => "cloud-sku",
         "description" => "Amazing Service",
-        "status" => "ACTIVE",
         "sale_price" => {
           "total_amount" => 1599.99,
           "currency" => "GBP"
@@ -69,7 +67,6 @@ describe 'instance methods' do
       "name" => "Cloud Service",
       "reference" => "cloud-sku",
       "description" => "Amazing Service",
-      "status" => "ACTIVE",
       "sale_price" => {
         "total_amount" => 1599.99,
         "currency" => "GBP"
@@ -88,7 +85,6 @@ describe 'instance methods' do
         "name" => "Cloud Service",
         "sku" => "cloud-sku",
         "description" => "Amazing Service",
-        "active" => true,
         "prices" => [
           {
             "amount" => "1599.99",

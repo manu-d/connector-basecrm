@@ -2,7 +2,7 @@ require 'spec_helper'
 
 def rest_client_arguments_get
   { method: :get,
-    url: "https://api.getbase.com/v2/contacts",
+    url: "https://api.getbase.com/v2/contacts?",
     headers: {"Accept"=>"application/json", "Authorization"=>"Bearer "}}
 end
 

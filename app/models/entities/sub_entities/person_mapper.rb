@@ -1,7 +1,6 @@
 class Entities::SubEntities::PersonMapper
   extend HashMapper
 
-  #For the sake of simplicity not many fields have been mapped
   map from('title'), to('title')
   map from('first_name'), to('first_name')
   map from('last_name'), to('last_name')

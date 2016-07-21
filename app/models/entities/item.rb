@@ -1,5 +1,3 @@
-require 'bigdecimal'
-
 class Entities::Item < Maestrano::Connector::Rails::Entity
   def self.connec_entity_name
     'Item'
@@ -20,14 +18,19 @@ class Entities::Item < Maestrano::Connector::Rails::Entity
   def self.object_name_from_external_entity_hash(entity)
     "#{entity['name']}"
   end
+
+  def self.inactive_from_external_entity_hash?(entity)
+    # This method return true if entity is inactive in the external application
+    entity['active'] == false
+  end
 end
 
 class ItemMapper
   extend HashMapper
 
   after_normalize do |input, output|
-    output['sku'] = input['reference'].present? ? input['reference'] : "NOSKU-#{(1..9).to_a.shuffle[0,5].join}"
-    output['cost'] = input['purchase_price']['total_amount'].present? ? input['purchase_price']['total_amount'].to_s : "0.0"
+    output[:sku] ||= input['code']
+    output[:cost] ||= "0.0"
     output
   end
 
@@ -36,11 +39,9 @@ class ItemMapper
   map from('reference'), to('sku')
   map from('description'), to('description'), default: "This item has no description"
 
-  map from('status') {|value| value == true ? "ACTIVE" : "INACTIVE"}, to('active') {|value| :active.to_s.upcase ? true : false}
-
-  map from('sale_price/total_amount') {|value| BigDecimal.new(value).to_f}, to("prices[0]/amount", &:to_s), default: 0
+  map from('sale_price/total_amount', &:to_f), to("prices[0]/amount", &:to_s), default: 0
   map from('sale_price/currency'), to("prices[0]/currency")
 
-  map from('purchase_price/total_amount') {|value| BigDecimal.new(value).to_f}, to('cost', &:to_s)
+  map from('purchase_price/total_amount', &:to_f), to('cost', &:to_s)
   map from('purchase_price/currency'), to('cost_currency')
 end

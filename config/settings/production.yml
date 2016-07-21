@@ -1,4 +1,4 @@
-app_host: 'https://base-crm-connector.herokuapp.com/'
+app_host: 'https://connector-base-crm.herokuapp.com/'
 
 default:
   api_host: 'https://maestrano.com'

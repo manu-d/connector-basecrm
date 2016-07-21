@@ -12,10 +12,10 @@ describe BaseAPIManager do
   context "Uses RestClient to query the BaseCRM API:" do
 
     before do
-      allow_any_instance_of(DataParser).to receive(:from_base_collection) { "Parsed Response"}
+      allow_any_instance_of(DataParser).to receive(:from_base_collection) { ["Parsed Response"]}
       allow_any_instance_of(DataParser).to receive(:from_base_single) { "Parsed Response"}
       allow_any_instance_of(DataParser).to receive(:to_base) { "Parsed Response"}
-      allow(JSON).to receive(:parse) { "Parsed JSON"}
+      allow(JSON).to receive(:parse) { {"meta" => {"links" => "https://test.com"}}}
       allow(JSON).to receive(:generate) { "Generated JSON"}
     end
 
@@ -23,7 +23,7 @@ describe BaseAPIManager do
     it "Returns a response from the API" do
       allow(RestClient::Request).to receive(:execute).with(rest_client_arguments_get) { api_get_call_contacts}
       output = BaseAPIManager.new(organization).get_entities("contact")
-      expect(output).to eq "Parsed Response"
+      expect(output).to eq ["Parsed Response"]
     end
 
     it "can create entities" do

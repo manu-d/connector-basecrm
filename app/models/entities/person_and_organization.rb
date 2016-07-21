@@ -21,7 +21,7 @@ class Entities::PersonAndOrganization < Maestrano::Connector::Rails::ComplexEnti
   #             }
   #          }
   def connec_model_to_external_model(connec_hash_of_entities)
-    modelled_hash = { 'Person' => { 'Contact' => connec_hash_of_entities['Person'] }, 'Organization' => { 'Contact' => connec_hash_of_entities['Organization'] }}
+    { 'Person' => { 'Contact' => connec_hash_of_entities['Person'] }, 'Organization' => { 'Contact' => connec_hash_of_entities['Organization'] }}
   end
 
   # input :  {
@@ -50,8 +50,4 @@ class Entities::PersonAndOrganization < Maestrano::Connector::Rails::ComplexEnti
     end
     modelled_hash
   end
-
-  # def self.find_or_create_idmap(organization_and_id)
-  #   super(organization_and_id.except(:external_id))
-  # end
 end

@@ -11,5 +11,5 @@ class Entities::SubEntities::OrganizationMapper
   map from('address_work/billing/region'), to('address/state')
   map from('address_work/billing/country'), to('address/country')
 
-  map from('/website/url'), to('website')
+  map from('website/url'), to('website')
 end

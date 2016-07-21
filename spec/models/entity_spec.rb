@@ -39,13 +39,16 @@ describe Maestrano::Connector::Rails::Entity do
 
     before {
       allow(subject.class).to receive(:external_entity_name).and_return(external_name)
+      allow(RestClient).to receive(:get) { {"items" => [{"data" => {"id" => 123456}}, {"data" => {"id" => 7891011}}]}.to_json}
       allow(RestClient::Request).to receive(:execute) { {"items" => [{"data" => {"id" => 123456}}, {"data" => {"id" => 7891011}}]}.to_json}
+      allow(JSON).to receive(:parse) { {"meta" => {"links" => "https://test.com"}}}
+      allow_any_instance_of(DataParser).to receive(:from_base_collection) { [{"id" => 123456} ,{"id" => 7891011}]}
     }
 
     describe 'get_external_entities' do
 
       it 'uses RestCient::Request to query the external API' do
-        expect(RestClient::Request).to receive(:execute)
+        expect(RestClient).to receive(:get)
         subject.get_external_entities(nil)
       end
 
