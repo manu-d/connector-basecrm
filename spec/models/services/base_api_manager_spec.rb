@@ -15,12 +15,15 @@ describe BaseAPIManager do
       allow(JSON).to receive(:generate) { "Generated JSON"}
     end
 
-    #The API manager gets rid of the 'data' field before returning the array of entities
-    it "Returns a response from the API" do
-      allow(RestClient).to receive(:get) { :TEST}
-      output = BaseAPIManager.new(organization).get_entities("contact")
-      expect(output).to eq ["Parsed Response"]
+    context "#get_entities" do
+      #The API manager gets rid of the 'data' field before returning the array of entities
+      it "Returns a response from the API" do
+        allow(RestClient).to receive(:get) { :TEST}
+        output = BaseAPIManager.new(organization).get_entities("contact")
+        expect(output).to eq ["Parsed Response"]
+      end
     end
+
 
     it "can create entities" do
       allow(RestClient::Request).to receive(:execute).with(rest_client_arguments_post) { "test post request"}

@@ -9,7 +9,8 @@ class Maestrano::Connector::Rails::Entity < Maestrano::Connector::Rails::EntityB
       entities = BaseAPIManager.new(@organization).get_entities(entity_name, @opts)
     else
       entity_name = self.class.external_entity_name
-      entities = BaseAPIManager.new(@organization).get_entities(entity_name, @opts)
+      #Setting the last argument to true enables a flag that breaks out of the while loop (fetching entities by page) in BaseAPIManager
+      entities = BaseAPIManager.new(@organization).get_entities(entity_name, {}, last_synchronization_date, true)
     end
     # This method should return only entities that have been updated since the last_synchronization_date
     # It should also implements an option to do a full synchronization when @opts[:full_sync] == true or when there is no last_synchronization_date

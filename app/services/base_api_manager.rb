@@ -7,14 +7,13 @@ class BaseAPIManager
   end
 
   #Fetches all the resources for the specific entity
-  def get_entities(entity_name = "", opts={})
+  def get_entities(entity_name="", opts={}, last_synchronization_date=nil, after_last_sync=false)
     begin
       batched_call = opts[:__skip] && opts[:__limit]
-      #the page requested is calculated from the offset ([:__skip)]) and (opts[:__limit])
-      if batched_call
-        page = opts[:__skip] == 0 ? 1 : (opts[:__skip] / opts[:__limit] + 1)
-        query = "page=#{page}&per_page=#{opts[:__limit]}"
-      end
+
+      query = QueryParamsManager.batched_call if batched_call
+      query = QueryParamsManager.by_updated_at_desc if after_last_sync
+
       response = RestClient.get "https://api.getbase.com/v2/#{entity_name.downcase.pluralize}?#{query}", headers_get
       #the meta field is retrieved indipendently to avoid conflicting with DataParser
       meta = JSON.parse(response)['meta']
@@ -27,6 +26,8 @@ class BaseAPIManager
           response = Restclient.get "#{meta['links']['next_page']}", headers_get
           raise 'No response received while fetching subsequent page' unless response
           entities << DataParser.from_base_collection(response)
+          p "ENTITIES ++++++++++++++________________ #{entities}"
+          break if after_last_sync && entities.last['updated_at'] < last_synchronization_date
         end
       end
       entities.flatten!
@@ -47,9 +48,7 @@ class BaseAPIManager
                                              payload: payload, headers: headers_post_put
       DataParser.from_base_single(response)
     rescue => e
-      err = e.respond_to?(:response) ? e.response : e
-      Rails.logger.warn "Error while posting to #{external_entity_name}: #{err}"
-      raise "Error while sending data: #{err}"
+      standard_rescue(e)
     end
   end
 
@@ -88,5 +87,15 @@ class BaseAPIManager
       "Content-Type" => "application/json",
       "Authorization" => "Bearer #{organization.oauth_token}"
     }
+  end
+
+  def standard_rescue(e)
+    err = e.respond_to?(:response) ? e.response : e
+    Rails.logger.warn "Error while posting to #{external_entity_name}: #{err}"
+    raise "Error while sending data: #{err}"
+  end
+
+  def query_build(opts)
+
   end
 end
