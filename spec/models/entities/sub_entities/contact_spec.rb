@@ -9,9 +9,9 @@ describe Entities::SubEntities::Contact do
 
     subject { Entities::SubEntities::Contact}
 
-      it { expect(subject.id_from_external_entity_hash(entity_person)).to eq 123456 }
-      it { expect(subject.object_name_from_external_entity_hash(entity_person)).to eq "John Smith"}
-      it { expect(subject.object_name_from_external_entity_hash(entity_organization)).to eq "test_org"}
+    it { expect(subject.id_from_external_entity_hash(entity_person)).to eq 123456 }
+    it { expect(subject.object_name_from_external_entity_hash(entity_person)).to eq "John Smith"}
+    it { expect(subject.object_name_from_external_entity_hash(entity_organization)).to eq "test_org"}
   end
 
   context "Instance Methods" do
@@ -30,9 +30,9 @@ describe Entities::SubEntities::Contact do
           "title"=> "Mr",
           "email"=> 'test@email.com',
           "address" => {
-              "city" => "London",
-              "postal_code" => "W6 7TN",
-              "country" => "United Kingdom"
+            "city" => "London",
+            "postal_code" => "W6 7TN",
+            "country" => "United Kingdom"
           }
         }
       }
@@ -45,7 +45,7 @@ describe Entities::SubEntities::Contact do
           :title => "Mr",
           :email => {
             :address => "test@email.com"
-            },
+          },
           :address_work => {
             :billing => {
               :city => 'London',
@@ -70,9 +70,9 @@ describe Entities::SubEntities::Contact do
           "email"=> "test@test.com",
           "website"=> "http://test.com",
           "address" => {
-              "city" => "London",
-              "postal_code" => "W6 7TN",
-              "country" => "United Kingdom"
+            "city" => "London",
+            "postal_code" => "W6 7TN",
+            "country" => "United Kingdom"
           }
         }
       }
@@ -84,7 +84,7 @@ describe Entities::SubEntities::Contact do
           :industry => "ITC",
           :email => {
             :address => "test@test.com"
-            },
+          },
           :website => {
             :url => "http://test.com"
           },

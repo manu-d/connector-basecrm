@@ -1,9 +1,8 @@
 require "spec_helper"
-require "data_helper"
 
 describe DataParser do
 
-  subject        { DataParser.new}
+  subject        { DataParser}
   let(:response) { api_get_call_contacts}
   let(:response_single) { api_response_from_post }
   let(:mapped_entity) { mapped_connec_entity}

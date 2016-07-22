@@ -1,5 +1,5 @@
 require 'spec_helper'
-require 'data_helper'
+#require 'data_helper'
 
 describe Maestrano::Connector::Rails::Entity do
 
@@ -42,7 +42,7 @@ describe Maestrano::Connector::Rails::Entity do
       allow(RestClient).to receive(:get) { {"items" => [{"data" => {"id" => 123456}}, {"data" => {"id" => 7891011}}]}.to_json}
       allow(RestClient::Request).to receive(:execute) { {"items" => [{"data" => {"id" => 123456}}, {"data" => {"id" => 7891011}}]}.to_json}
       allow(JSON).to receive(:parse) { {"meta" => {"links" => "https://test.com"}}}
-      allow_any_instance_of(DataParser).to receive(:from_base_collection) { [{"id" => 123456} ,{"id" => 7891011}]}
+      allow(DataParser).to receive(:from_base_collection) { [{"id" => 123456} ,{"id" => 7891011}]}
     }
 
     describe 'get_external_entities' do
@@ -58,7 +58,7 @@ describe Maestrano::Connector::Rails::Entity do
     end
 
     #Considering that DataParser is tested in its own spec file, the next two specs
-    #are testing that the return is the response from RestClient::Request#execute
+    #are testing that the return is the ID of the external entity and the response from RestClient::Request#execute
     describe 'create_external_entity' do
       it 'Posts using BaseAPIManager and returns the ID of the external entity' do
         allow_any_instance_of(BaseAPIManager).to receive(:create_entities) { {'id' => 123456, "name" => "test entity"}}
