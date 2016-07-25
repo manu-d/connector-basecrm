@@ -28,8 +28,7 @@ class Maestrano::Connector::Rails::Entity < Maestrano::Connector::Rails::EntityB
   def update_external_entity(mapped_connec_entity, external_id, external_entity_name)
     Maestrano::Connector::Rails::ConnectorLogger.log('info', @organization, "Sending update #{external_entity_name} (id=#{external_id}): #{mapped_connec_entity} to #{Maestrano::Connector::Rails::External.external_name}")
     begin
-      entity = BaseAPIManager.new(@organization).update_entities(mapped_connec_entity, external_id, external_entity_name)
-      entity
+      BaseAPIManager.new(@organization).update_entities(mapped_connec_entity, external_id, external_entity_name)
     rescue Exceptions::RecordNotFound => e
       idmap = Maestrano::Connector::Rails::IdMap.find_by(organization_id: @organization.id, external_id: external_id)
       idmap.update!(message: "The #{external_entity_name} record has been deleted in Base. It has been modified on #{Time.now}", external_inactive: true)

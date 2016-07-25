@@ -1,5 +1,4 @@
 require 'spec_helper'
-#require 'data_helper'
 
 describe Maestrano::Connector::Rails::Entity do
 
