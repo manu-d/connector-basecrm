@@ -13,7 +13,7 @@ class QueryParamsManager
     query = "page=#{page}&per_page=#{opts[:__limit]}"
   end
 
-  def self.by_updated_at_desc
-    query = "sort_by=updated_at:desc"
+  def self.by_updated_at
+    query = "sort_by=updated_at"
   end
 end

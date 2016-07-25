@@ -11,26 +11,24 @@ class BaseAPIManager
     begin
       batched_call = opts[:__skip] && opts[:__limit]
 
-      query = QueryParamsManager.batched_call if batched_call
-      query = QueryParamsManager.by_updated_at_desc if after_last_sync
+      query = QueryParamsManager.batched_call(opts) if batched_call
+      query = QueryParamsManager.by_updated_at if after_last_sync
 
       response = RestClient.get "https://api.getbase.com/v2/#{entity_name.downcase.pluralize}?#{query}", headers_get
       #the meta field is retrieved indipendently to avoid conflicting with DataParser
       meta = JSON.parse(response)['meta']
       #DataParser strips the response from 'items' and 'data' fields
-      parsed_response = DataParser.from_base_collection(response)
-      entities = parsed_response
+      entities = DataParser.from_base_collection(response.body)
+
 
       unless batched_call
         while meta['links']['next_page']
-          response = Restclient.get "#{meta['links']['next_page']}", headers_get
-          raise 'No response received while fetching subsequent page' unless response
-          entities << DataParser.from_base_collection(response)
-          p "ENTITIES ++++++++++++++________________ #{entities}"
-          break if after_last_sync && entities.last['updated_at'] < last_synchronization_date
+          response = RestClient.get "#{meta['links']['next_page']}", headers_get
+          entities.concat DataParser.from_base_collection(response.body)
+          raise 'No response received while fetching subsequent page' unless response && !response.body.blank?
+          break if after_last_sync && Time.parse(entities.last['updated_at']) < last_synchronization_date
         end
       end
-      entities.flatten!
       entities
     rescue => e
       Rails.logger.warn "Error while fetching #{entity_name}. Error: #{e}"
@@ -46,7 +44,7 @@ class BaseAPIManager
     begin
       response = RestClient::Request.execute method: :post, url: "https://api.getbase.com/v2/#{external_entity_name.downcase.pluralize}",
                                              payload: payload, headers: headers_post_put
-      DataParser.from_base_single(response)
+      DataParser.from_base_single(response.body)
     rescue => e
       standard_rescue(e)
     end
@@ -64,9 +62,7 @@ class BaseAPIManager
       if e.class == RestClient::ResourceNotFound
         raise Exceptions::RecordNotFound.new("The record has been deleted in BaseCRM")
       else
-        err = e.respond_to?(:response) ? e.response : e
-        Rails.logger.warn "Error while updating #{external_entity_name} with: #{err}"
-        raise "Entity #{external_entity_name} could not be updated. Error: #{err}"
+        standard_rescue(e)
       end
     end
   end
@@ -82,20 +78,12 @@ class BaseAPIManager
   end
 
   def headers_post_put
-    {
-      "Accept" => "application/json",
-      "Content-Type" => "application/json",
-      "Authorization" => "Bearer #{organization.oauth_token}"
-    }
+      headers_get.merge!("Content-Type" => "application/json")
   end
 
   def standard_rescue(e)
     err = e.respond_to?(:response) ? e.response : e
     Rails.logger.warn "Error while posting to #{external_entity_name}: #{err}"
     raise "Error while sending data: #{err}"
-  end
-
-  def query_build(opts)
-
   end
 end

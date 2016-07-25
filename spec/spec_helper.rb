@@ -1,11 +1,6 @@
 require 'simplecov'
 require 'coveralls'
 
-SimpleCov.formatter = Coveralls::SimpleCov::Formatter
-SimpleCov.start do
-  add_filter 'app/config'
-end
-
 ENV['RAILS_ENV'] ||= 'test'
 
 require File.expand_path("../../config/environment", __FILE__)
