@@ -1,6 +1,9 @@
 require 'simplecov'
 require 'coveralls'
 
+#Simplecov is generating: TypeError: can't dup NilClass
+#SimpleCov.start 'rails'
+
 ENV['RAILS_ENV'] ||= 'test'
 
 require File.expand_path("../../config/environment", __FILE__)

@@ -2,11 +2,11 @@ require 'spec_helper'
 
 describe BaseAPIManager do
 
-  let(:organization) { build(:organization, uid: nil, oauth_token: nil, refresh_token: nil, oauth_provider: nil) }
-  let(:opts)         { {:__skip => 0, :__limit => 2} }
-  let(:headers_get)      { {"Accept" =>"application/json", "Authorization" =>"Bearer "} }
-  let(:response_collection)       { OpenStruct.new body: [{"name" => "ITEM 1", "updated_at" => "2016-07-22T08:36:25Z"}, {"name" => "ITEM 2", "updated_at" => "2016-07-22T08:34:25Z"}]}
-  let(:response_entity)         { OpenStruct.new body: {"name" => "ITEM 2", "updated_at" => "2016-07-22T08:34:25Z"}}
+  let(:organization)          { build(:organization, uid: nil, oauth_token: nil, refresh_token: nil, oauth_provider: nil) }
+  let(:opts)                  { {:__skip => 0, :__limit => 2} }
+  let(:headers_get)           { {"Accept" =>"application/json", "Authorization" =>"Bearer "} }
+  let(:response_collection)   { OpenStruct.new body: [{"name" => "ITEM 1", "updated_at" => "2016-07-22T08:36:25Z"}, {"name" => "ITEM 2", "updated_at" => "2016-07-22T08:34:25Z"}]}
+  let(:response_entity)       { OpenStruct.new body: {"name" => "ITEM 2", "updated_at" => "2016-07-22T08:34:25Z"}}
 
   context "Uses RestClient to query the BaseCRM API:" do
 
