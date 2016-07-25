@@ -22,7 +22,7 @@ describe BaseAPIManager do
       it "Returns a response from the API" do
         allow(JSON).to receive(:parse) { {"meta" => {"links" => {"self" => "https://test.com"}}}}
         allow(RestClient).to receive(:get) { response_collection}
-        expect(BaseAPIManager.new(organization).get_entities("contact", {}, Time.parse("2016-07-22T08:35:25Z"), true)).to eq response_collection.body
+        expect(BaseAPIManager.new(organization).get_entities("contact", {}, Time.parse("2016-07-22T08:35:25Z"))).to eq response_collection.body
       end
 
       it "Makes a custom call using query params if opts[:__skip] and opts[:__limit] are present" do
@@ -38,7 +38,7 @@ describe BaseAPIManager do
         expect(RestClient).to receive(:get).with("https://test.com", headers_get)
         allow(RestClient).to receive(:get).with("https://test.com", headers_get) { response_collection}
         #last_synchronization_date is a Time object, passed as a third parameter in #get_entities
-        BaseAPIManager.new(organization).get_entities("contact", {}, Time.parse("2016-07-22T08:35:25Z"), true)
+        BaseAPIManager.new(organization).get_entities("contact", {}, Time.parse("2016-07-22T08:35:25Z"))
       end
     end
 

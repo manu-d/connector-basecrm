@@ -7,12 +7,12 @@ class BaseAPIManager
   end
 
   #Fetches all the resources for the specific entity
-  def get_entities(entity_name="", opts={}, last_synchronization_date=nil, after_last_sync=false)
+  def get_entities(entity_name="", opts={}, last_synchronization_date=nil)
     begin
       batched_call = opts[:__skip] && opts[:__limit]
 
       query = QueryParamsManager.batched_call(opts) if batched_call
-      query = QueryParamsManager.by_updated_at if after_last_sync
+      query = QueryParamsManager.by_updated_at if last_synchronization_date
 
       response = RestClient.get "https://api.getbase.com/v2/#{entity_name.downcase.pluralize}?#{query}", headers_get
       #the meta field is retrieved indipendently to avoid conflicting with DataParser
@@ -20,13 +20,12 @@ class BaseAPIManager
       #DataParser strips the response from 'items' and 'data' fields
       entities = DataParser.from_base_collection(response.body)
 
-
       unless batched_call
         while meta['links']['next_page']
           response = RestClient.get "#{meta['links']['next_page']}", headers_get
           entities.concat DataParser.from_base_collection(response.body)
           raise 'No response received while fetching subsequent page' unless response && !response.body.blank?
-          break if after_last_sync && Time.parse(entities.last['updated_at']) < last_synchronization_date
+          break if last_synchronization_date && Time.parse(entities.last['updated_at']) < last_synchronization_date
         end
       end
       entities

@@ -13,7 +13,7 @@ class Maestrano::Connector::Rails::Entity < Maestrano::Connector::Rails::EntityB
       entity_name = self.class.external_entity_name
       #Setting the last argument to true creates a query string that fetches entities sorted_by updated_at
       #stopping requests when the last element of the page is older than last_synchronization_date
-      entities = BaseAPIManager.new(@organization).get_entities(entity_name, {}, last_synchronization_date, true)
+      entities = BaseAPIManager.new(@organization).get_entities(entity_name, {}, last_synchronization_date)
     end
     Maestrano::Connector::Rails::ConnectorLogger.log('info', @organization, "Received data: Source=#{Maestrano::Connector::Rails::External.external_name}, Entity=#{self.class.external_entity_name}, Response=#{entities}")
     entities
