@@ -88,6 +88,7 @@ class BaseAPIManager
 
   def only_updated_entities(entities, last_synchronization_date)
     first_older_index = entities.index { |entity| entity['updated_at'] < last_synchronization_date}
+    first_older_index ||= entities.length
     entities = entities.slice(0, first_older_index)
   end
 
