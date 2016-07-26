@@ -38,7 +38,7 @@ describe Maestrano::Connector::Rails::Entity do
 
     before {
       allow(subject.class).to receive(:external_entity_name).and_return(external_name)
-      allow(RestClient).to receive(:get) { OpenStruct.new body: {"items" => [{"data" => {"id" => 123456}}, {"data" => {"id" => 7891011}}]}}
+      allow(RestClient).to receive(:get) { ActionDispatch::Response.new 200, {}, [{"items" => [{"data" => {"id" => 123456}}, {"data" => {"id" => 7891011}}]}]}
       allow(RestClient::Request).to receive(:execute) { {"items" => [{"data" => {"id" => 123456}}, {"data" => {"id" => 7891011}}]}}
       allow(JSON).to receive(:parse) { {"meta" => {"links" => "https://test.com"}}}
       allow(DataParser).to receive(:from_base_collection) { [{"id" => 123456} ,{"id" => 7891011}]}

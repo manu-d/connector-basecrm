@@ -6,8 +6,6 @@ class Entities::SubEntities::PersonMapper
   map from('last_name'), to('last_name')
   map from('email/address'), to('email')
 
-  map from('organization_id'), to('contact_id')
-
   map from('contact_channel/skype'), to('skype')
   map from('phone_work/landline'), to('phone')
   map from('phone_work/mobile'), to('mobile')

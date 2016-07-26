@@ -10,10 +10,10 @@ class QueryParamsManager
   def self.batched_call(opts)
     #the page requested is calculated from the offset ([:__skip)]) and (opts[:__limit])
     page = opts[:__skip] == 0 ? 1 : (opts[:__skip] / opts[:__limit] + 1)
-    query = "page=#{page}&per_page=#{opts[:__limit]}"
+    { page: "#{page}", per_page: "#{opts[:__limit]}"}
   end
 
   def self.by_updated_at
-    query = "sort_by=updated_at"
+    { sort_by: "updated_at"}
   end
 end
