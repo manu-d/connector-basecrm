@@ -1,6 +1,6 @@
 # connector-basecrm
 -------------------------------------
-[![Code Climate](https://codeclimate.com/github/MarcoCode/ruby-connector/badges/gpa.svg)](https://codeclimate.com/github/MarcoCode/ruby-connector)
+[![Code Climate](https://codeclimate.com/github/maestrano/connector-basecrm/badges/gpa.svg)](https://codeclimate.com/github/maestrano/connector-basecrm)
 -------------------------------------
 The aim of this connector is to implement data sharing between Connec! and BaseCRM
 

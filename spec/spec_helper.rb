@@ -1,10 +1,8 @@
 require 'simplecov'
 require 'coveralls'
 
-SimpleCov.formatter = Coveralls::SimpleCov::Formatter
-SimpleCov.start do
-  add_filter 'app/config'
-end
+#Simplecov is generating: TypeError: can't dup NilClass
+#SimpleCov.start 'rails'
 
 ENV['RAILS_ENV'] ||= 'test'
 

@@ -6,6 +6,9 @@
 
 #Ignore OSX config files
 .DS_Store
+/**/.DS_Store
+/**/**/.DS_Store
+/**/**/**/.DS_Store
 
 # Ignore bundler config.
 /.bundle

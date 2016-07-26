@@ -20,7 +20,15 @@ describe Entities::SubEntities::Person do
       let(:connec_hash) {
         {
           "first_name" => "John",
-          "title" => "Mr",
+          "job_title" => "CTO",
+          "contact_channel" => {
+            "skype" => "johnsmith"
+          },
+          "phone_work" => {
+            "landline" => "0208111111",
+            "mobile" => "0777111222",
+            "fax" => "0208000000"
+          },
           "address_work" => {
             "billing" => {
               "city" => 'London',
@@ -32,8 +40,12 @@ describe Entities::SubEntities::Person do
       }
 
       let(:mapped_connec_hash) {
-        { :title => 'Mr',
+        { :title => 'CTO',
           :first_name => 'John',
+          :skype => 'johnsmith',
+          :phone => '0208111111',
+          :mobile => '0777111222',
+          :fax => '0208000000',
           :address => {
             :city => 'London',
             :postal_code => 'W6 7TN',

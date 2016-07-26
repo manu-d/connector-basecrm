@@ -27,8 +27,12 @@ describe Entities::SubEntities::Contact do
           "contact_id"=> nil,
           "first_name"=> "John",
           "last_name"=> "Smith",
-          "title"=> "Mr",
+          "title"=> "CTO",
           "email"=> 'test@email.com',
+          "skype"=> "johnsmith",
+          "phone"=> "0208111",
+          "mobile"=> "0777111",
+          "fax"=> "0208000",
           "address" => {
             "city" => "London",
             "postal_code" => "W6 7TN",
@@ -42,9 +46,17 @@ describe Entities::SubEntities::Contact do
           :id => [{"id"=>134706023, "provider"=>"this_app", "realm"=>"sfuiy765"}],
           :first_name => "John",
           :last_name => "Smith",
-          :title => "Mr",
+          :job_title => "CTO",
           :email => {
             :address => "test@email.com"
+          },
+          :contact_channel => {
+            :skype => "johnsmith"
+          },
+          :phone_work => {
+            :landline => "0208111",
+            :mobile => "0777111",
+            :fax => "0208000"
           },
           :address_work => {
             :billing => {
@@ -69,6 +81,9 @@ describe Entities::SubEntities::Contact do
           "industry"=> "ITC",
           "email"=> "test@test.com",
           "website"=> "http://test.com",
+          "skype"=> "itccompany",
+          "phone"=> "0208111",
+          "fax"=> "0208000",
           "address" => {
             "city" => "London",
             "postal_code" => "W6 7TN",
@@ -87,6 +102,13 @@ describe Entities::SubEntities::Contact do
           },
           :website => {
             :url => "http://test.com"
+          },
+          :contact_channel => {
+            :skype => "itccompany"
+          },
+          :phone_work => {
+            :landline => "0208111",
+            :fax => "0208000"
           },
           :address_work => {
             :billing => {

@@ -84,7 +84,7 @@ def api_get_call_contacts
       "type" => "collection","count" => 2,
       "links" =>
         {
-          "self" => "https=>//api.getbase.com/v2/contacts?page=1&per_page=25"
+          "self" => "https://api.getbase.com/v2/contacts?page=1&per_page=25"
         }
       }
     }.to_json
@@ -125,7 +125,7 @@ def api_response_error
       "meta" => {
         "type" => "error",
         "links" => {
-          "more_info" => "https =>//developers.getbase.com/docs/rest/articles/errors"
+          "more_info" => "https://developers.getbase.com/docs/rest/articles/errors"
         }
       },
       "error" => {
@@ -139,7 +139,7 @@ def api_response_error
   "meta" => {
     "type" => "collection",
     "links" => {
-      "more_info" => "https =>//developers.getbase.com/docs/rest/articles/errors"
+      "more_info" => "https://developers.getbase.com/docs/rest/articles/errors"
     },
     "http_status" => "404 Not Found",
     "logref" => "am2a2-s2pur-icd17-05rkg"
