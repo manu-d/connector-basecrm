@@ -5,7 +5,7 @@
 #   git config --global core.excludesfile '~/.gitignore_global'
 
 #Ignore OSX config files
-.DS_Store
+/.DS_Store
 /**/.DS_Store
 /**/**/.DS_Store
 /**/**/**/.DS_Store
