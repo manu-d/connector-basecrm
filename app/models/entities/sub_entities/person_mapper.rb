@@ -1,10 +1,18 @@
 class Entities::SubEntities::PersonMapper
   extend HashMapper
 
+  # after_denormalize do |input, output|
+  #   output[:assignee_type] = "AppUser"
+  # end
+
+
   map from('job_title'), to('title')
   map from('first_name'), to('first_name')
   map from('last_name'), to('last_name')
   map from('email/address'), to('email')
+
+  map from('organization_id'), to('contact_id')
+  #map from('assignee_id'), to('owner_id')
 
   map from('contact_channel/skype'), to('skype')
   map from('phone_work/landline'), to('phone')

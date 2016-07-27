@@ -1,6 +1,6 @@
 require "singleton"
 
-class BaseClient
+class AuthClient
   include Singleton
 
   RED_URI = "#{Settings.app_host}/auth/baseCRM/callback"

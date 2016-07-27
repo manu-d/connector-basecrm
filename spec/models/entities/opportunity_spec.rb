@@ -12,49 +12,71 @@ describe 'class methods' do
 end
 
 describe 'instance methods' do
-  before do
-    allow(BaseCRM::Client).to receive(:new) { "test client"}
-  end
+
   let(:organization) { create(:organization) }
   let(:connec_client) { Maestrano::Connector::Rails::ConnecHelper.get_client(organization) }
   let(:external_client) { Maestrano::Connector::Rails::External.get_client(organization) }
   let(:opts) { {} }
   subject { Entities::Opportunity.new(organization, connec_client, external_client, opts) }
 
+    before do
+      stages = [{
+                   "id"=> 5550555,
+                   "name"=> "Incoming",
+                   "category"=> "incoming",
+                   "position"=> 1,
+                   "likelihood"=> 50,
+                   "active"=> true,
+                   "pipeline_id"=> 634362,
+                   "created_at"=> "2016-07-19T10:19:37Z",
+                   "updated_at"=> "2016-07-19T10:19:41Z"
+                 }]
+      allow(external_client).to receive(:get_entity) { stages }
+      subject.before_sync
+    end
+
   describe 'external to connec!' do
+
     let(:external_hash) {
-        {
-          "id" => 1,
-          "name" => "Cloud Service",
-          "sku" => "cloud-sku",
-          "description" => "Amazing Service",
-          "prices" => [
-            {
-              "amount" => "1599.99",
-              "currency" => "GBP"
-            }
-          ],
-          "cost" => "799.99",
-          "cost_currency" => "GBP",
-          "created_at" => "2014-11-30T08:14:44Z",
-          "updated_at" => "2014-11-30T08:14:44Z"
-        }
+      {
+        "dropbox_email"=> "dropbox@72ca79e5.deals.futuresimple.com",
+        "value"=> 500,
+        "contact_id"=> 135906741,
+        "stage_id"=> 5550555,
+        "loss_reason_id"=> nil,
+        "currency"=> "GBP",
+        "estimated_close_date"=> nil,
+        "updated_at"=> "2016-07-27T08=>48=>07Z",
+        "tags"=> [],
+        "owner_id"=> 960788,
+        "creator_id"=> 960788,
+        "last_stage_change_by_id"=> 960788,
+        "custom_fields"=> {},
+        "organization_id"=> 135906739,
+        "source_id"=> nil,
+        "name"=> "Hot Deal",
+        "id"=> 2,
+        "last_activity_at"=> "2016-07-27T08:48:07Z",
+        "last_stage_change_at"=> "2016-07-27T08:48:07Z",
+        "hot"=> false,
+        "created_at"=> "2016-07-19T10:20:07Z"
       }
+    }
 
     let (:mapped_external_hash) {
       {
-        "id" => [{'id' => 1, 'provider' => organization.oauth_provider, 'realm' => organization.oauth_uid}],
-        "name" => "Cloud Service",
-        "reference" => "cloud-sku",
-        "description" => "Amazing Service",
-        "sale_price" => {
-          "total_amount" => 1599.99,
-          "currency" => "GBP"
+        "id" => [{'id' => 2, 'provider' => organization.oauth_provider, 'realm' => organization.oauth_uid}],
+        "name" => "Hot Deal",
+        "amount" => {
+          "total_amount" => 500.0
         },
-        "purchase_price" => {
-          "total_amount" => 799.99,
-          "currency" => "GBP"
-        }
+        "sales_stage" => "Incoming",
+        "probability" => 50,
+        "sales_stage_changes" => [
+          {
+            "created_at" => "2016-07-27T08:48:07Z"
+          }
+        ],
       }.with_indifferent_access
     }
 
@@ -64,35 +86,41 @@ describe 'instance methods' do
   describe 'connec to external' do
     let(:connec_hash) {
       {
-      "name" => "Cloud Service",
-      "reference" => "cloud-sku",
-      "description" => "Amazing Service",
-      "sale_price" => {
-        "total_amount" => 1599.99,
-        "currency" => "GBP"
+      "id" => "f4e131e0-cd6a-0133-b422-027f396e04cb",
+      "code" => "POT1",
+      "name" => "Hot Deal",
+      "description" => "A very good opportunity",
+      "sales_stage" => "Open",
+      "type" => "New Business",
+      "expected_close_date" => "2016-03-28T07:12:51Z",
+      "amount" => {
+        "total_amount" => 99.99
       },
-      "purchase_price" => {
-        "total_amount" => 110,
-        "currency" => "GBP"
-      },
-      "created_at" => "2014-11-30T08:14:44Z",
-      "updated_at" => "2014-11-30T08:14:44Z"
+      "probability" => 10,
+      "next_step" => "Qualification",
+      "sales_stage_changes" => [
+        {
+          "status" => "Open",
+          "created_at" => "2016-03-16T06:05:07Z"
+        }
+      ],
+      "created_at" => "2016-03-16T06:05:07Z",
+      "updated_at" => "2016-03-16T07:12:52Z",
+      "channel_id" => "org-fbba",
+      "lead_id" => "8be5a2b1-49fd-4844-b740-87965bbbd0bc",
+      "assignee_id" => "b5dbd78a-26da-4e55-ad84-625b25d67622",
+      "assignee_type" => "AppUser",
+      "resource_type" => "opportunities"
     }
-  }
+   }
 
     let(:mapped_connec_hash) {
       {
-        "name" => "Cloud Service",
-        "sku" => "cloud-sku",
-        "description" => "Amazing Service",
-        "prices" => [
-          {
-            "amount" => "1599.99",
-            "currency" => "GBP"
-          }
-        ],
-        "cost" => "110",
-        "cost_currency" => "GBP"
+        "name" => "Hot Deal",
+        "value" => "99.99",
+        "stage_id" => 1,
+        "estimated_close_date"=> "2016-03-28T07:12:51Z",
+        "last_stage_change_at" => "2016-03-16T06:05:07Z"
       }.with_indifferent_access
     }
 

@@ -13,6 +13,12 @@ class Entities::SubEntities::Person < Maestrano::Connector::Rails::SubEntityBase
     }
   end
 
+  def self.references
+    {
+      'Contact' => %w(organization_id)
+    }
+  end
+
   def self.object_name_from_connec_entity_hash(entity)
     "#{entity['first_name']} #{entity['last_name']}"
   end
