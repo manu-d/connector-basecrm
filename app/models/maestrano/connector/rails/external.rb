@@ -10,7 +10,7 @@ class Maestrano::Connector::Rails::External
   end
 
   def self.entities_list
-    %w(person_and_organization item opportunity)
+    %w(person_and_organization item opportunity app_user)
   end
 
   def self.fetch_company(organization)

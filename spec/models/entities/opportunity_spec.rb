@@ -71,6 +71,7 @@ describe 'instance methods' do
           "total_amount" => 500.0
         },
         "sales_stage" => "Incoming",
+        "lead_id" => [{"id"=>135906741, "provider"=>"this_app", "realm"=>"sfuiy765"}],
         "probability" => 50,
         "sales_stage_changes" => [
           {
@@ -118,7 +119,8 @@ describe 'instance methods' do
       {
         "name" => "Hot Deal",
         "value" => "99.99",
-        "stage_id" => 1,
+        "contact_id" => "8be5a2b1-49fd-4844-b740-87965bbbd0bc",
+        "stage_id" => 0,
         "estimated_close_date"=> "2016-03-28T07:12:51Z",
         "last_stage_change_at" => "2016-03-16T06:05:07Z"
       }.with_indifferent_access

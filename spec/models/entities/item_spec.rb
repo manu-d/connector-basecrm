@@ -12,9 +12,7 @@ describe 'class methods' do
 end
 
 describe 'instance methods' do
-  before do
-    allow(BaseCRM::Client).to receive(:new) { "test client"}
-  end
+  
   let(:organization) { create(:organization) }
   let(:connec_client) { Maestrano::Connector::Rails::ConnecHelper.get_client(organization) }
   let(:external_client) { Maestrano::Connector::Rails::External.get_client(organization) }
