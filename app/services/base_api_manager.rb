@@ -76,15 +76,6 @@ class BaseAPIManager
     end
   end
 
-  def get_entity(entity_name)
-    begin
-      response = RestClient.get "https://api.getbase.com/v2/#{entity_name}", headers_get
-      DataParser.from_base_single(response.body)
-    rescue => e
-      standard_rescue(e)
-    end
-  end
-
   private
   attr_reader :organization
 

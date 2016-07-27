@@ -14,6 +14,6 @@ class Maestrano::Connector::Rails::External
   end
 
   def self.fetch_company(organization)
-    client = BaseAPIManager.new(organization).get_account
+    BaseAPIManager.new(organization).get_account
   end
 end

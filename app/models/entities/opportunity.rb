@@ -24,7 +24,8 @@ class Entities::Opportunity < Maestrano::Connector::Rails::Entity
   end
 
   def before_sync(last_synchronization_date = nil)
-     @stages = @external_client.get_entity('stages')
+     @stages = @external_client.get_entities('stages')
+     @stages ||= []
   end
 
   def map_to_connec(entity)
