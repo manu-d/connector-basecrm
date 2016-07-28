@@ -1,6 +1,14 @@
 class Entities::SubEntities::OrganizationMapper
   extend HashMapper
 
+  after_denormalize do |input, output|
+    if input['organization_name']
+      output[:name] = input['organization_name']
+      output[:is_lead] = true
+    end
+    output
+  end
+
   map from('name'), to('name')
   map from('industry'), to('industry')
   map from('email/address'), to('email')

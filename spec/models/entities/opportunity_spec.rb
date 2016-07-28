@@ -31,7 +31,7 @@ describe 'instance methods' do
                    "created_at"=> "2016-07-19T10:19:37Z",
                    "updated_at"=> "2016-07-19T10:19:41Z"
                  }]
-      allow(external_client).to receive(:get_entity) { stages }
+      allow(external_client).to receive(:get_entities) { stages }
       subject.before_sync
     end
 

@@ -2,9 +2,12 @@ class Entities::SubEntities::PersonMapper
   extend HashMapper
 
   after_denormalize do |input, output|
+    if input['is_organization'].nil?
+      output[:is_lead] = true
+    end
     output[:assignee_type] = "AppUser"
+    output
   end
-
 
   map from('job_title'), to('title')
   map from('first_name'), to('first_name')

@@ -28,6 +28,7 @@ describe Entities::SubEntities::Contact do
           "first_name"=> "John",
           "last_name"=> "Smith",
           "title"=> "CTO",
+          "is_organization"=> false,
           "email"=> 'test@email.com',
           "skype"=> "johnsmith",
           "phone"=> "0208111",
@@ -64,7 +65,8 @@ describe Entities::SubEntities::Contact do
               :postal_code => 'W6 7TN',
               :country => 'United Kingdom'
             }
-          }
+          },
+          :assignee_type => "AppUser"
         }.with_indifferent_access
       }
 
@@ -82,6 +84,7 @@ describe Entities::SubEntities::Contact do
           "email"=> "test@test.com",
           "website"=> "http://test.com",
           "skype"=> "itccompany",
+          "is_organization"=> true,
           "phone"=> "0208111",
           "fax"=> "0208000",
           "address" => {
