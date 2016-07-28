@@ -9,7 +9,8 @@ class Entities::SubEntities::Person < Maestrano::Connector::Rails::SubEntityBase
 
   def self.mapper_classes
     {
-      'Contact' => Entities::SubEntities::PersonMapper
+      'Contact' => Entities::SubEntities::PersonMapper,
+      'Lead' => Entities::SubEntities::PersonMapper
     }
   end
 

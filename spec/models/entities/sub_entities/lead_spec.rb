@@ -79,7 +79,7 @@ describe Entities::SubEntities::Lead do
           },
           :address_work => {
             :billing => {
-              :line1=> "21 Lead street",
+              :line1 => "21 Lead street",
               :city => 'London',
               :postal_code => "W3 L45",
               :country => "United Kingdom"

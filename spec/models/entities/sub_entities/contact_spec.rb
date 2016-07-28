@@ -61,6 +61,7 @@ describe Entities::SubEntities::Contact do
           },
           :address_work => {
             :billing => {
+              :line1 => '',
               :city => 'London',
               :postal_code => 'W6 7TN',
               :country => 'United Kingdom'
