@@ -14,21 +14,24 @@ describe Entities::PersonAndOrganization do
     describe 'connec_model_to_external_model' do
       let(:person) { {'first_name' => 'Arold', 'is_lead' => false} }
       let(:organization) { {'name' => 'TestOptima', 'is_lead' => false} }
-      let(:lead) { {'first_name' => 'John', 'is_lead' => true} }
+      let(:lead_person) { {'first_name' => 'John', 'is_lead' => true} }
+      let(:lead_organization) { {'name' => 'TestLeadOrg', 'is_lead' => true} }
 
       let(:connec_hash) {
         {
-          'Person' => [person, lead],
-          'Organization' => [organization]
+          'Person' => [person, lead_person],
+          'Organization' => [organization, lead_organization]
         }
       }
 
       let(:output_hash) {
         {
           "Person" => { "Contact" => [person],
-                        "Lead" => [lead]
+                        "Lead" => [lead_person]
                        },
-          "Organization" => { "Contact" => [organization]}
+          "Organization" => { "Contact" => [organization],
+                              "Lead" => [lead_organization]
+                            }
         }
       }
 
@@ -47,14 +50,19 @@ describe Entities::PersonAndOrganization do
       let(:external_hash) {
         {
           'Contact' => [contact1, contact2],
-          'Lead' => [lead1]
+          'Lead' => [lead1, lead2]
         }
       }
       let(:output_hash) {
         { "Contact" =>
           {
-            'Person' => [contact1, lead1],
+            'Person' => [contact1],
             'Organization' => [contact2]
+          },
+          "Lead" =>
+          {
+            'Person' => [lead1],
+            'Organization' => [lead2]
           }
         }
       }

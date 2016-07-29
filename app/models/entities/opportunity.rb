@@ -30,18 +30,28 @@ class Entities::Opportunity < Maestrano::Connector::Rails::Entity
 
   def map_to_connec(entity)
     mapped_entity = super
+    #Stages in Base are retrieved through a specific endpoint in the API.
     stage = @stages.find { |stage| stage['id'] == entity['stage_id'] }
-    mapped_entity[:sales_stage] = stage['name'] ? stage['name'] : "stage not found"
-    mapped_entity[:probability] = stage['likelihood'] ? stage['likelihood'] : 0
-    mapped_entity
+    map_sales_stage(mapped_entity, stage) if stage
   end
 
   def map_to_external(entity)
-     mapped_entity = super
-     stage = @stages.find { |stage| stage['name'].downcase == entity['sales_stage'].downcase}
-     stage ||= @stages.find { |stage| stage['likelyhood'] == entity['probability']}
-     mapped_entity[:stage_id] = stage ? stage['id'] : 0
-     mapped_entity
+    mapped_entity = super
+    #The sales_stages in Base are associated with a unique id. The first step in order
+    #to map it to Connec! is to try matching the sales_stage directly.
+    stage = @stages.find { |stage| stage['name'].downcase == entity['sales_stage'].downcase}
+    #If no stage is found with the same name, the one with the closest match
+    #between 'likelyhood' (Base) and 'probability' (Connec!) will be selected.
+    stage ||= @stages.min_by { |stage| (stage['likelihood'] - entity['probability']).abs }
+    mapped_entity[:stage_id] = stage ? stage['id'] : @stages.first['id']
+    mapped_entity
+  end
+
+  private
+  def map_sales_stage(mapped_entity, stage)
+    mapped_entity[:sales_stage] = stage['name']
+    mapped_entity[:probability] = stage['likelihood']
+    mapped_entity
   end
 end
 

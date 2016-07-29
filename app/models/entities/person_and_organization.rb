@@ -22,20 +22,32 @@ class Entities::PersonAndOrganization < Maestrano::Connector::Rails::ComplexEnti
   #          }
   def connec_model_to_external_model(connec_hash_of_entities)
     contacts = []
-    leads = []
+    organizations = []
+    leads_people = []
+    leads_organizations = []
 
     connec_hash_of_entities['Person'].each do |person|
       if person['is_lead']
-        leads << person
+        leads_people << person
       else
         contacts << person
       end
     end
 
+    connec_hash_of_entities['Organization'].each do |organization|
+      if organization['is_lead']
+        leads_organizations << organization
+      else
+        organizations << organization
+      end
+    end
+
     { 'Person' => { 'Contact' => contacts,
-                    'Lead' => leads
+                    'Lead' => leads_people
                   },
-      'Organization' => { 'Contact' => connec_hash_of_entities['Organization'] }
+      'Organization' => { 'Contact' => organizations,
+                          'Lead' => leads_organizations
+                        }
     }
   end
 
@@ -53,10 +65,10 @@ class Entities::PersonAndOrganization < Maestrano::Connector::Rails::ComplexEnti
   #             }
   #           }
   def external_model_to_connec_model(external_hash_of_entities)
-    contacts = external_hash_of_entities['Contact'] ? external_hash_of_entities['Contact'] : []
-    leads = external_hash_of_entities['Lead'] ? external_hash_of_entities['Lead'] : []
+    contacts = external_hash_of_entities['Contact']
+    leads = external_hash_of_entities['Lead']
 
-    modelled_hash = {'Contact' => { 'Person' => [], 'Organization' => [] }}
+    modelled_hash = {'Contact' => { 'Person' => [], 'Organization' => [] }, 'Lead' => {'Person' => [], 'Organization' => []}}
 
     contacts.each do |contact|
       if contact['is_organization']
@@ -67,10 +79,10 @@ class Entities::PersonAndOrganization < Maestrano::Connector::Rails::ComplexEnti
     end
 
     leads.each do |lead|
-      if lead['organization_name']
-        modelled_hash['Contact']['Organization'] << lead
+      if lead['organization_name'] && !lead['last_name']
+        modelled_hash['Lead']['Organization'] << lead
       else
-        modelled_hash['Contact']['Person'] << lead
+        modelled_hash['Lead']['Person'] << lead
       end
     end
     modelled_hash

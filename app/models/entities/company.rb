@@ -15,10 +15,6 @@ class Entities::Company < Maestrano::Connector::Rails::Entity
     true
   end
 
-  def self.external_singleton?
-    true
-  end
-
   def self.object_name_from_connec_entity_hash(entity)
     entity['name']
   end

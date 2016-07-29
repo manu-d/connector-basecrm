@@ -25,12 +25,34 @@ describe 'instance methods' do
                    "name"=> "Incoming",
                    "category"=> "incoming",
                    "position"=> 1,
-                   "likelihood"=> 50,
+                   "likelihood"=> 0,
                    "active"=> true,
                    "pipeline_id"=> 634362,
                    "created_at"=> "2016-07-19T10:19:37Z",
                    "updated_at"=> "2016-07-19T10:19:41Z"
-                 }]
+                 },
+                 {
+                    "id"=> 6660666,
+                    "name"=> "Incoming",
+                    "category"=> "incoming",
+                    "position"=> 1,
+                    "likelihood"=> 50,
+                    "active"=> true,
+                    "pipeline_id"=> 634362,
+                    "created_at"=> "2016-07-19T10:19:37Z",
+                    "updated_at"=> "2016-07-19T10:19:41Z"
+                  },
+                  {
+                     "id"=> 7770777,
+                     "name"=> "Incoming",
+                     "category"=> "incoming",
+                     "position"=> 1,
+                     "likelihood"=> 30,
+                     "active"=> true,
+                     "pipeline_id"=> 634362,
+                     "created_at"=> "2016-07-19T10:19:37Z",
+                     "updated_at"=> "2016-07-19T10:19:41Z"
+                   }]
       allow(external_client).to receive(:get_entities) { stages }
       subject.before_sync
     end
@@ -72,7 +94,7 @@ describe 'instance methods' do
         },
         "sales_stage" => "Incoming",
         "lead_id" => [{"id"=>135906741, "provider"=>"this_app", "realm"=>"sfuiy765"}],
-        "probability" => 50,
+        "probability" => 0,
         "sales_stage_changes" => [
           {
             "created_at" => "2016-07-27T08:48:07Z"
@@ -97,7 +119,7 @@ describe 'instance methods' do
       "amount" => {
         "total_amount" => 99.99
       },
-      "probability" => 10,
+      "probability" => 40,
       "next_step" => "Qualification",
       "sales_stage_changes" => [
         {
@@ -120,7 +142,7 @@ describe 'instance methods' do
         "name" => "Hot Deal",
         "value" => "99.99",
         "contact_id" => "8be5a2b1-49fd-4844-b740-87965bbbd0bc",
-        "stage_id" => 0,
+        "stage_id" => 6660666,
         "estimated_close_date"=> "2016-03-28T07:12:51Z",
         "last_stage_change_at" => "2016-03-16T06:05:07Z"
       }.with_indifferent_access

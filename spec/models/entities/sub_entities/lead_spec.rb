@@ -86,6 +86,7 @@ describe Entities::SubEntities::Lead do
             }
           },
           :is_lead => true,
+          :is_customer => false,
           :assignee_type => "AppUser"
         }.with_indifferent_access
       }
@@ -136,6 +137,7 @@ describe Entities::SubEntities::Lead do
       let(:mapped_external_hash) {
         {
           :id => [{"id"=>1903091859, "provider"=>"this_app", "realm"=>"sfuiy765"}],
+          :assignee_id => [{"id"=>960788, "provider"=>"this_app", "realm"=>"sfuiy765"}],
           :name => "Company Lead",
           :industry => "ITC",
           :email => {
@@ -160,7 +162,8 @@ describe Entities::SubEntities::Lead do
               :country => "United Kingdom"
             }
           },
-          :is_lead => true
+          :is_lead => true,
+          :is_customer => false
         }.with_indifferent_access
       }
 

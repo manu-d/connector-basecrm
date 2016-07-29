@@ -37,7 +37,7 @@ class AppUserMapper
   # Mapping to Connec!
   after_denormalize do |input, output|
     output[:first_name] = input['name'].split(' ').first
-    output[:last_name] = input['name'].split(' ').last
+    output[:last_name] = input['name'].split(' ', 2).last
     output
 end
 
