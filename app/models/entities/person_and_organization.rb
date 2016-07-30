@@ -25,22 +25,13 @@ class Entities::PersonAndOrganization < Maestrano::Connector::Rails::ComplexEnti
     organizations = []
     leads_people = []
     leads_organizations = []
-
-    connec_hash_of_entities['Person'].each do |person|
-      if person['is_lead']
-        leads_people << person
-      else
-        contacts << person
-      end
-    end
-
-    connec_hash_of_entities['Organization'].each do |organization|
-      if organization['is_lead']
-        leads_organizations << organization
-      else
-        organizations << organization
-      end
-    end
+    #In Connec! Leads are People or Organizations with 'is_lead' = true
+    split_leads_from_connec(connec_hash_of_entities['Person'],
+                            leads_people,
+                            contacts)
+    split_leads_from_connec(connec_hash_of_entities['Organization'],
+                            leads_organizations,
+                            organizations)
 
     { 'Person' => { 'Contact' => contacts,
                     'Lead' => leads_people
@@ -68,23 +59,31 @@ class Entities::PersonAndOrganization < Maestrano::Connector::Rails::ComplexEnti
     contacts = external_hash_of_entities['Contact']
     leads = external_hash_of_entities['Lead']
 
-    modelled_hash = {'Contact' => { 'Person' => [], 'Organization' => [] }, 'Lead' => {'Person' => [], 'Organization' => []}}
+    modelled_hash = {'Contact' => { 'Person' => [], 'Organization' => [] },
+                     'Lead' => {'Person' => [], 'Organization' => []}
+                    }
 
-    contacts.each do |contact|
-      if contact['is_organization']
-        modelled_hash['Contact']['Organization'] << contact
-      else
-        modelled_hash['Contact']['Person'] << contact
-      end
-    end
+    filter_entities_into_connec(modelled_hash, 'Contact', contacts, 'is_organization')
+    filter_entities_into_connec(modelled_hash, 'Lead', leads, 'organization_name', 'last_name')
 
-    leads.each do |lead|
-      if lead['organization_name'] && !lead['last_name']
-        modelled_hash['Lead']['Organization'] << lead
-      else
-        modelled_hash['Lead']['Person'] << lead
-      end
-    end
     modelled_hash
   end
+
+  private
+  def split_leads_from_connec(connec_hash, leads_array, entity_array)
+    connec_hash.each do |entity|
+      entity['is_lead'] ? leads_array << entity : entity_array << entity
+    end
+  end
+
+  def filter_entities_into_connec(modelled_hash, entity_name, entities_array, *conditions)
+    entities_array.each do |entity|
+      if entity[conditions[0]] && !entity[conditions[1]]
+        modelled_hash[entity_name]['Organization'] << entity
+      else
+        modelled_hash[entity_name]['Person'] << entity
+      end
+    end
+  end
+
 end
