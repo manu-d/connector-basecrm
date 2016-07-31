@@ -31,7 +31,7 @@ class Maestrano::Connector::Rails::Entity < Maestrano::Connector::Rails::EntityB
       @external_client.update_entities(mapped_connec_entity, external_id, external_entity_name)
     rescue Exceptions::RecordNotFound => e
       idmap = Maestrano::Connector::Rails::IdMap.find_by(organization_id: @organization.id, external_id: external_id)
-      idmap.update!(message: "The #{external_entity_name} record has been deleted in Base. It has been modified on #{Time.now}", external_inactive: true)
+      idmap.update!(message: "The #{external_entity_name} record has been deleted in Base. Last attempt to sync on #{Time.now}", external_inactive: true)
       Rails.logger.warn "#{e}. It is now set to inactive."
     end
   end

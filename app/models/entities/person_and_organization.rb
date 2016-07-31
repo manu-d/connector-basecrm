@@ -25,7 +25,7 @@ class Entities::PersonAndOrganization < Maestrano::Connector::Rails::ComplexEnti
     organizations = []
     leads_people = []
     leads_organizations = []
-    #In Connec! Leads are People or Organizations with 'is_lead' = true
+    #In Connec! Leads are People or Organizations with field 'is_lead' = true
     split_leads_from_connec(connec_hash_of_entities['Person'],
                             leads_people,
                             contacts)
@@ -85,5 +85,4 @@ class Entities::PersonAndOrganization < Maestrano::Connector::Rails::ComplexEnti
       end
     end
   end
-
 end

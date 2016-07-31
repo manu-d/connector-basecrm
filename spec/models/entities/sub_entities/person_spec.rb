@@ -43,6 +43,7 @@ describe Entities::SubEntities::Person do
       let(:mapped_connec_hash) {
         { :title => 'CTO',
           :first_name => 'John',
+          :last_name => 'Not Available',
           :skype => 'johnsmith',
           :phone => '0208111111',
           :mobile => '0777111222',
@@ -119,7 +120,7 @@ describe Entities::SubEntities::Person do
             "group_id"=> "cld-9asu",
             "channel_id"=> "org-f6zi",
             "resource_type"=> "people"
-          }
+          }.with_indifferent_access
         }
 
         let(:mapped_connec_hash) {
