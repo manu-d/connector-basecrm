@@ -7,7 +7,7 @@ describe Entities::SubEntities::Organization do
 
     it { expect(subject.entity_name).to eql('Organization') }
     it { expect(subject.external?).to eql(false) }
-    it { expect(subject.mapper_classes).to eql({"Contact" => Entities::SubEntities::OrganizationMapper}) }
+    it { expect(subject.mapper_classes).to eql({"Contact" => Entities::SubEntities::OrganizationMapper, "Lead" => Entities::SubEntities::OrganizationMapper}) }
     it { expect(subject.object_name_from_connec_entity_hash({'name' => 'A Company', 'industry' => 'ITC'})).to eql('A Company') }
   end
 
@@ -19,19 +19,19 @@ describe Entities::SubEntities::Organization do
     describe '#map_to base Contact' do
       let(:connec_hash) {
         {
-          "name" => "Test Company",
-          "industry" => "ITC",
-          "email" => {
-            "address" => "test@test.com"
+          :name => "Test Company",
+          :industry => "ITC",
+          :email => {
+            :address => "test@test.com"
           },
-          "website" => {
-            "url" => "http://test.com"
+          :website => {
+            :url => "http://test.com"
           },
-          "address_work" => {
-            "billing" => {
-              "city" => 'London',
-              "line1" => '37 Kinderton Gardens',
-              "country" => "United Kingdom"
+          :address_work => {
+            :billing => {
+              :city => 'London',
+              :line1 => '37 Kinderton Gardens',
+              :country => "United Kingdom"
             }
           }
         }
@@ -39,14 +39,15 @@ describe Entities::SubEntities::Organization do
 
       let(:mapped_connec_hash) {
         {
-          :name => 'Test Company',
-          :industry => 'ITC',
-          :email => "test@test.com",
-          :website => "http://test.com",
-          :address => {
-            :line1 => '37 Kinderton Gardens',
-            :city => 'London',
-            :country => 'United Kingdom'
+          'name' => 'Test Company',
+          'industry' => 'ITC',
+          'email' => "test@test.com",
+          'website' => "http://test.com",
+          'is_organization' => true,
+          'address' => {
+            'line1' => '37 Kinderton Gardens',
+            'city' => 'London',
+            'country' => 'United Kingdom'
             }
           }.with_indifferent_access
         }

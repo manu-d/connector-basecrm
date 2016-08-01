@@ -5,8 +5,8 @@ class OauthController < ApplicationController
       auth_params = {
         state: current_organization.uid
       }
-      client = BaseClient.authorize(QueryParamsManager.query_params(auth_params))
-      redirect_to client.auth_code.authorize_url(redirect_uri: BaseClient::RED_URI )
+      client = AuthClient.authorize(QueryParamsManager.query_params(auth_params))
+      redirect_to client.auth_code.authorize_url(redirect_uri: AuthClient::RED_URI )
     else
       redirect_to root_url
     end
@@ -16,9 +16,9 @@ class OauthController < ApplicationController
     org_uid = params[:state]
     organization = Organization.find_by_uid_and_tenant(org_uid, current_user.tenant)
     if organization && is_admin?(current_user, organization)
-      client = BaseClient.obtain_token
+      client = AuthClient.obtain_token
       if params[:code].present?
-        token = client.auth_code.get_token(params[:code], redirect_uri: BaseClient::RED_URI)
+        token = client.auth_code.get_token(params[:code], redirect_uri: AuthClient::RED_URI)
         organization.update_omniauth(token)
       end
     end

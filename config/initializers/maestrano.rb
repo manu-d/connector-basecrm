@@ -137,14 +137,14 @@
     # notified upon creation/update in Connec!™
     config.webhook.connec.subscriptions = {
       accounts: false,
-      company: false,
+      company: true,
       employees: false,
       events: false,
       event_orders: false,
       invoices: false,
-      items: false,
+      items: true,
       journals: false,
-      opportunities: false,
+      opportunities: true,
       organizations: true,
       payments: false,
       pay_items: false,

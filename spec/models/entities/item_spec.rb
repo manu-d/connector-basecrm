@@ -12,9 +12,7 @@ describe 'class methods' do
 end
 
 describe 'instance methods' do
-  before do
-    allow(BaseCRM::Client).to receive(:new) { "test client"}
-  end
+
   let(:organization) { create(:organization) }
   let(:connec_client) { Maestrano::Connector::Rails::ConnecHelper.get_client(organization) }
   let(:external_client) { Maestrano::Connector::Rails::External.get_client(organization) }
@@ -24,36 +22,39 @@ describe 'instance methods' do
   describe 'external to connec!' do
     let(:external_hash) {
         {
-          "id" => 1,
-          "name" => "Cloud Service",
-          "sku" => "cloud-sku",
-          "description" => "Amazing Service",
-          "prices" => [
+          "id"=> 483570,
+          "updated_at"=> "2016-08-01T13:00:51Z",
+          "created_at"=> "2016-07-31T20:06:42Z",
+          "active"=> true,
+          "description"=> "Testing UPDATE message",
+          "name"=> "BASE YYY Product",
+          "sku"=> "IT14",
+          "prices"=> [
             {
-              "amount" => "1599.99",
-              "currency" => "GBP"
+              "currency"=> "GBP",
+              "amount"=> "79.00"
             }
           ],
-          "cost" => "799.99",
-          "cost_currency" => "GBP",
-          "created_at" => "2014-11-30T08:14:44Z",
-          "updated_at" => "2014-11-30T08:14:44Z"
+          "max_discount"=> nil,
+          "max_markup"=> nil,
+          "cost"=> "10.00",
+          "cost_currency"=> "GBP"
         }
       }
 
     let (:mapped_external_hash) {
       {
-        "id" => [{'id' => 1, 'provider' => organization.oauth_provider, 'realm' => organization.oauth_uid}],
-        "name" => "Cloud Service",
-        "reference" => "cloud-sku",
-        "description" => "Amazing Service",
-        "sale_price" => {
-          "total_amount" => 1599.99,
-          "currency" => "GBP"
+        :id => [{'id' => 483570, 'provider' => organization.oauth_provider, 'realm' => organization.oauth_uid}],
+        :name => "BASE YYY Product",
+        :reference => "IT14",
+        :description => "Testing UPDATE message",
+        :sale_price => {
+          :total_amount => 79.0,
+          :currency => "GBP"
         },
-        "purchase_price" => {
-          "total_amount" => 799.99,
-          "currency" => "GBP"
+        :purchase_price => {
+          :total_amount => 10.0,
+          :currency => "GBP"
         }
       }.with_indifferent_access
     }
@@ -64,35 +65,52 @@ describe 'instance methods' do
   describe 'connec to external' do
     let(:connec_hash) {
       {
-      "name" => "Cloud Service",
-      "reference" => "cloud-sku",
-      "description" => "Amazing Service",
-      "sale_price" => {
-        "total_amount" => 1599.99,
-        "currency" => "GBP"
+      "id"=> "b081c691-3986-0134-12bc-0fd32de3632a",
+      "code"=> "IT6",
+      "reference"=> "IT6",
+      "name"=> "BaseCRM Product",
+      "description"=> "Test Product",
+      "status"=> "ACTIVE",
+      "is_inventoried"=> false,
+      "sale_price"=> {
+        "total_amount"=> 20,
+        "net_amount"=> 20,
+        "tax_amount"=> 0,
+        "tax_rate"=> 0,
+        "currency"=> "GBP"
       },
-      "purchase_price" => {
-        "total_amount" => 110,
-        "currency" => "GBP"
+      "purchase_price"=> {
+        "total_amount"=> 10,
+        "net_amount"=> 0,
+        "tax_amount"=> 0,
+        "tax_rate"=> 0,
+        "currency"=> "GBP"
       },
-      "created_at" => "2014-11-30T08:14:44Z",
-      "updated_at" => "2014-11-30T08:14:44Z"
+      "sale_tax_code_id"=> "a3daf1f1-3986-0134-10ad-0fd32de3632a",
+      "purchase_tax_code_id"=> "a3daf1f1-3986-0134-10ad-0fd32de3632a",
+      "sale_account_id"=> "a598f5a1-3986-0134-10f0-0fd32de3632a",
+      "purchase_account_id"=> "a5f127c0-3986-0134-110d-0fd32de3632a",
+      "created_at"=> "2016-07-31T19:55:43Z",
+      "updated_at"=> "2016-08-01T13:09:27Z",
+      "group_id"=> "cld-9a5p",
+      "channel_id"=> "org-f6is",
+      "resource_type"=> "items"
     }
   }
 
     let(:mapped_connec_hash) {
       {
-        "name" => "Cloud Service",
-        "sku" => "cloud-sku",
-        "description" => "Amazing Service",
-        "prices" => [
+        :name => "BaseCRM Product",
+        :sku => "IT6",
+        :description => "Test Product",
+        :prices => [
           {
-            "amount" => "1599.99",
-            "currency" => "GBP"
+            :amount => "20",
+            :currency => "GBP"
           }
         ],
-        "cost" => "110",
-        "cost_currency" => "GBP"
+        :cost => "10",
+        :cost_currency => "GBP"
       }.with_indifferent_access
     }
 
