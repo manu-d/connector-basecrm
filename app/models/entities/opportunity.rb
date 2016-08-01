@@ -48,11 +48,12 @@ class Entities::Opportunity < Maestrano::Connector::Rails::Entity
   end
 
   private
-  def map_sales_stage(mapped_entity, stage)
-    mapped_entity[:sales_stage] = stage['name']
-    mapped_entity[:probability] = stage['likelihood']
-    mapped_entity
-  end
+
+    def map_sales_stage(mapped_entity, stage)
+      mapped_entity[:sales_stage] = stage['name']
+      mapped_entity[:probability] = stage['likelihood']
+      mapped_entity
+    end
 end
 
 class OpportunityMapper

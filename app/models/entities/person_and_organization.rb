@@ -70,19 +70,20 @@ class Entities::PersonAndOrganization < Maestrano::Connector::Rails::ComplexEnti
   end
 
   private
-  def split_leads_from_connec(connec_hash, leads_array, entity_array)
-    connec_hash.each do |entity|
-      entity['is_lead'] ? leads_array << entity : entity_array << entity
-    end
-  end
 
-  def filter_entities_into_connec(modelled_hash, entity_name, entities_array, *conditions)
-    entities_array.each do |entity|
-      if entity[conditions[0]] && !entity[conditions[1]]
-        modelled_hash[entity_name]['Organization'] << entity
-      else
-        modelled_hash[entity_name]['Person'] << entity
+    def split_leads_from_connec(connec_hash, leads_array, contacts_array)
+      connec_hash.each do |entity|
+        entity['is_lead'] ? leads_array << entity : contacts_array << entity
       end
     end
-  end
+
+    def filter_entities_into_connec(modelled_hash, entity_name, entities_array, *conditions)
+      entities_array.each do |entity|
+        if entity[conditions[0]] && !entity[conditions[1]]
+          modelled_hash[entity_name]['Organization'] << entity
+        else
+          modelled_hash[entity_name]['Person'] << entity
+        end
+      end
+    end
 end

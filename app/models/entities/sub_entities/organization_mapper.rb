@@ -30,7 +30,7 @@ class Entities::SubEntities::OrganizationMapper
   map from('phone_work/mobile'), to('mobile')
   map from('phone_work/fax'), to('fax')
 
-  map from('assignee_id'), to('owner_id') { |value| value[0]['id'].to_i}
+  map from('assignee_id'), to('owner_id', &:to_i)
 
   map from('address_work/billing/line1'), to('address/line1')
   map from('address_work/billing/city'), to('address/city')

@@ -130,13 +130,9 @@ describe Entities::SubEntities::Person do
             :first_name => "Serena",
             :last_name => "Smith",
             :mobile => "0777333222",
-            :phone => "0208666555",
-            :address => {
-              :line1 => "21 Lead street",
-              :city => 'London',
-              :postal_code => "W2 L34",
-              :country => 'United Kingdom'
-            }
+            :phone => "0208666555"
+            #At the moment addresses coming from the shipping field
+            #will not be mapped.
           }.with_indifferent_access
         }
 
