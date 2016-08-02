@@ -59,9 +59,9 @@ describe Maestrano::Connector::Rails::Entity do
     #Considering that DataParser is tested in its own spec file, the next two specs
     #are testing that the return is the ID of the external entity and the response from RestClient::Request#execute
     describe 'create_external_entity' do
-      it 'Posts using BaseAPIManager and returns the ID of the external entity' do
-        allow_any_instance_of(BaseAPIManager).to receive(:create_entities) { {'id' => 123456, "name" => "test entity"}}
-        expect(subject.create_external_entity({}, external_name)).to eq 123456
+      it 'Posts using BaseAPIManager and returns the external entity' do
+        allow_any_instance_of(BaseAPIManager).to receive(:create_entities) { {'id' => 123456, "name" => "test entity"} }
+        expect(subject.create_external_entity({}, external_name)).to eql({'id' => 123456, "name" => "test entity"})
       end
     end
 
