@@ -23,6 +23,10 @@ class Entities::AppUser < Maestrano::Connector::Rails::Entity
     # This method return true if entity is inactive in the external application
     entity['status'] == 'inactive'
   end
+
+  def self.can_write_external?
+    false
+  end
 end
 
 class AppUserMapper
