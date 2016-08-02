@@ -2,20 +2,18 @@ class Maestrano::Connector::Rails::Entity < Maestrano::Connector::Rails::EntityB
   include Maestrano::Connector::Rails::Concerns::Entity
 
   # Return an array of entities from the external app
-  def get_external_entities(last_synchronization_date=nil)
+  def get_external_entities(external_entity_name, last_synchronization_date=nil)
     # This method should return only entities that have been updated since the last_synchronization_date
     # It should also implements an option to do a full synchronization when @opts[:full_sync] == true or when there is no last_synchronization_date
-    Maestrano::Connector::Rails::ConnectorLogger.log('info', @organization, "Fetching #{Maestrano::Connector::Rails::External.external_name} #{self.class.external_entity_name.pluralize}")
+    Maestrano::Connector::Rails::ConnectorLogger.log('info', @organization, "Fetching #{Maestrano::Connector::Rails::External.external_name} #{external_entity_name.pluralize}")
     if @opts[:full_sync] || !last_synchronization_date
-      entity_name = self.class.external_entity_name
-      entities = @external_client.get_entities(entity_name, @opts)
+      entities = @external_client.get_entities(external_entity_name, @opts)
     else
-      entity_name = self.class.external_entity_name
       #Setting the last argument to true creates a query string that fetches entities sorted_by updated_at
       #stopping requests when the last element of the page is older than last_synchronization_date
-      entities = @external_client.get_entities(entity_name, {}, last_synchronization_date)
+      entities = @external_client.get_entities(external_entity_name, {}, last_synchronization_date)
     end
-    Maestrano::Connector::Rails::ConnectorLogger.log('info', @organization, "Received data: Source=#{Maestrano::Connector::Rails::External.external_name}, Entity=#{self.class.external_entity_name}, Response=#{entities}")
+    Maestrano::Connector::Rails::ConnectorLogger.log('info', @organization, "Received data: Source=#{Maestrano::Connector::Rails::External.external_name}, Entity=#{external_entity_name}, Response=#{entities}")
     entities
   end
 

@@ -48,11 +48,11 @@ describe Maestrano::Connector::Rails::Entity do
 
       it 'uses RestCient::Request to query the external API' do
         expect(RestClient).to receive(:get)
-        subject.get_external_entities(nil)
+        subject.get_external_entities('', nil)
       end
 
       it 'returns the entities' do
-        expect(subject.get_external_entities(nil)).to eq [{"id"=>123456}, {"id"=>7891011}]
+        expect(subject.get_external_entities('', nil)).to eq [{"id"=>123456}, {"id"=>7891011}]
       end
     end
 
