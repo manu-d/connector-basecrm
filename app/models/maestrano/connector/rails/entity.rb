@@ -21,8 +21,7 @@ class Maestrano::Connector::Rails::Entity < Maestrano::Connector::Rails::EntityB
 
   def create_external_entity(mapped_connec_entity, external_entity_name)
     Maestrano::Connector::Rails::ConnectorLogger.log('info', @organization, "Sending create #{external_entity_name}: #{mapped_connec_entity} to #{Maestrano::Connector::Rails::External.external_name}")
-    entity = @external_client.create_entities(mapped_connec_entity, external_entity_name)
-    self.class.id_from_external_entity_hash(entity)
+    @external_client.create_entities(mapped_connec_entity, external_entity_name)
   end
 
   def update_external_entity(mapped_connec_entity, external_id, external_entity_name)
