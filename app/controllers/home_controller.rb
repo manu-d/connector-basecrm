@@ -2,6 +2,7 @@ class HomeController < ApplicationController
 
   def index
     @organization = current_organization
+    @displayable_synchronized_entities = @organization.displayable_synchronized_entities if @organization
   end
 
   def update

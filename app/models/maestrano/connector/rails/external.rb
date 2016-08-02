@@ -9,6 +9,10 @@ class Maestrano::Connector::Rails::External
     BaseAPIManager.new(organization)
   end
 
+  def self.create_account_link(organization = nil)
+    'https://getbase.com/base/'
+  end
+
   def self.entities_list
     %w(app_user person_and_organization item opportunity)
   end
