@@ -318,10 +318,7 @@ GEM
       tzinfo (>= 1.0.0)
     uglifier (3.0.0)
       execjs (>= 0.3.0, < 3)
-    unf (0.1.4)
-      unf_ext
     unf (0.1.4-java)
-    unf_ext (0.0.7.2)
     uuid (2.3.8)
       macaddr (~> 1.0)
 
