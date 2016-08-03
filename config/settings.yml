@@ -1,6 +1,8 @@
 encryption_key1: <%= ENV['encryption_key1'] %>
 encryption_key2: <%= ENV['encryption_key2'] %>
 
+first_sync_batch_size: 25
+
 # tenant config
 default:
   environment: 'production'
