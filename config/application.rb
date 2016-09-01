@@ -6,7 +6,6 @@ module TestConnector
   class Application < Rails::Application
     Bundler.require(*Rails.groups)
     Config::Integrations::Rails::Railtie.preload
-    # Maestrano.auto_configure
 
     config.generators do |g|
       g.test_framework :rspec, fixture: false

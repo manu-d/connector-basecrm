@@ -1,8 +1,0 @@
-dev_platform:
-  host: 'https://dev-platform.maestrano.com'
-  api_path: '/api/config/v1/marketplaces'
-
-environment:
-  name: 'my-environment'
-  api_key: 'your-environment-api-key'
-  api_secret: 'your-environment-api-secret'
