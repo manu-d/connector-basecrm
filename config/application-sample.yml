@@ -1,0 +1,10 @@
+base_client_id: 'your Base client ID'
+base_client_secret: 'your Base client secret'
+
+REDIS_URL: redis://localhost:6379/0/connector-basecrm
+
+MNO_DEVPL_HOST: https://dev-platform.maestrano.io
+MNO_DEVPL_API_PATH: /api/config/v1/marketplaces
+MNO_DEVPL_ENV_NAME: connector-salesforce-uat
+MNO_DEVPL_ENV_KEY: changeme
+MNO_DEVPL_ENV_SECRET: changeme

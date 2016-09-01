@@ -1,7 +1,7 @@
-ruby "2.2.3", :engine => "jruby", :engine_version => "9.0.5.0"
 source 'https://rubygems.org'
+ruby "2.2.3", engine: "jruby", engine_version: "9.0.5.0"
 
-gem 'rails', '4.2.4'
+gem 'rails', '~> 4.2'
 gem 'turbolinks'
 gem 'jquery-rails'
 gem 'coffee-rails'
@@ -14,7 +14,10 @@ gem 'config'
 gem 'rdoc', '~> 3.12'
 gem 'jeweler', '~> 2.1.1'
 
-gem 'maestrano-connector-rails'
+# gem 'maestrano-connector-rails', '2.0.0.pre.RC1'
+gem 'maestrano-connector-rails', path: '../maestrano-connector-rails'
+gem 'maestrano-rails', path: '../maestrano-rails'
+gem 'maestrano', path: '../maestrano-ruby'
 
 gem 'oauth2'
 gem 'basecrm'
