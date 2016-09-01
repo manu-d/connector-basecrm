@@ -1,1 +1,1 @@
-Maestrano.auto_configure
+Maestrano.auto_configure unless Rails.env.test?

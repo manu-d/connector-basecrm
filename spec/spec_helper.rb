@@ -15,6 +15,8 @@ require 'support/helpers/data_helper'
 
 Rails.backtrace_cleaner.remove_silencers!
 
+Maestrano.reset!
+
 RSpec.configure do |config|
   config.mock_with :rspec
   config.use_transactional_fixtures = true
