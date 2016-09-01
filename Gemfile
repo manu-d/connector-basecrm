@@ -14,7 +14,7 @@ gem 'config'
 gem 'rdoc', '~> 3.12'
 gem 'jeweler', '~> 2.1.1'
 
-gem 'maestrano-connector-rails', '2.0.0.pre.RC2'
+gem 'maestrano-connector-rails', '2.0.0.pre.RC3'
 
 gem 'oauth2'
 gem 'basecrm'

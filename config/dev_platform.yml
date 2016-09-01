@@ -1,3 +1,0 @@
-dev_platform:
-  host: 'https://dev-platform.maestrano.io'
-  api_path: '/api/config/v1/marketplaces'
