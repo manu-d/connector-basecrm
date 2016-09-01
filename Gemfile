@@ -14,10 +14,7 @@ gem 'config'
 gem 'rdoc', '~> 3.12'
 gem 'jeweler', '~> 2.1.1'
 
-# gem 'maestrano-connector-rails', '2.0.0.pre.RC1'
-gem 'maestrano-connector-rails', path: '../maestrano-connector-rails'
-gem 'maestrano-rails', path: '../maestrano-rails'
-gem 'maestrano', path: '../maestrano-ruby'
+gem 'maestrano-connector-rails', '2.0.0.pre.RC2'
 
 gem 'oauth2'
 gem 'basecrm'
