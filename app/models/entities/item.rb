@@ -32,6 +32,7 @@ class ItemMapper
     output[:description] = 'This item has no description' if output[:description].empty?
     output[:sku] ||= input['code']
     output[:cost] ||= '0.0'
+    output[:prices][0][:amount] ||= input['sale_price']['net_amount'].to_s
     output
   end
 
