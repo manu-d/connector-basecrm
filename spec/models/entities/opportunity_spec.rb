@@ -130,8 +130,8 @@ describe 'instance methods' do
       "created_at" => "2016-03-16T06:05:07Z",
       "updated_at" => "2016-03-16T07:12:52Z",
       "channel_id" => "org-fbba",
-      "lead_id" => "8be5a2b1-49fd-4844-b740-87965bbbd0bc",
-      "assignee_id" => "b5dbd78a-26da-4e55-ad84-625b25d67622",
+      "lead_id" => 135906741,
+      "assignee_id" => nil,
       "assignee_type" => "AppUser",
       "resource_type" => "opportunities"
     }
@@ -141,7 +141,7 @@ describe 'instance methods' do
       {
         "name" => "Hot Deal",
         "value" => "99.99",
-        "contact_id" => "8be5a2b1-49fd-4844-b740-87965bbbd0bc",
+        "contact_id" => 135906741,
         "stage_id" => 6660666,
         "estimated_close_date"=> "2016-03-28T07:12:51Z",
         "last_stage_change_at" => "2016-03-16T06:05:07Z"

@@ -105,7 +105,7 @@ class BaseAPIManager
     def standard_rescue(e, external_entity_name)
       err = e.respond_to?(:response) ? e.response : e
       Rails.logger.warn "Error while posting to #{external_entity_name}: #{err}"
-      raise "Error while sending data: #{err}"
+      raise e
     end
 
     def only_updated_entities(entities, last_synchronization_date)

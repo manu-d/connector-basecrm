@@ -15,4 +15,8 @@ class DataParser
   def self.to_base(entity)
     { "data" => entity}
   end
+
+  def self.parse_422_error(error)
+    JSON.parse(error.response)['errors'].first['error']['details']
+  end
 end

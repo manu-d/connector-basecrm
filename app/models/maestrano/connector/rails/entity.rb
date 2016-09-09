@@ -2,7 +2,7 @@ class Maestrano::Connector::Rails::Entity < Maestrano::Connector::Rails::EntityB
   include Maestrano::Connector::Rails::Concerns::Entity
 
   # Return an array of entities from the external app
-  def get_external_entities(external_entity_name, last_synchronization_date=nil)
+  def get_external_entities(external_entity_name, last_synchronization_date = nil)
     # This method should return only entities that have been updated since the last_synchronization_date
     # It should also implements an option to do a full synchronization when @opts[:full_sync] == true or when there is no last_synchronization_date
     Maestrano::Connector::Rails::ConnectorLogger.log('info', @organization, "Fetching #{Maestrano::Connector::Rails::External.external_name} #{external_entity_name.pluralize}")
@@ -20,17 +20,15 @@ class Maestrano::Connector::Rails::Entity < Maestrano::Connector::Rails::EntityB
   def create_external_entity(mapped_connec_entity, external_entity_name)
     Maestrano::Connector::Rails::ConnectorLogger.log('info', @organization, "Sending create #{external_entity_name}: #{mapped_connec_entity} to #{Maestrano::Connector::Rails::External.external_name}")
     @external_client.create_entities(mapped_connec_entity, external_entity_name)
+  rescue => e
+    readable_error(e, mapped_connec_entity)
   end
 
   def update_external_entity(mapped_connec_entity, external_id, external_entity_name)
     Maestrano::Connector::Rails::ConnectorLogger.log('info', @organization, "Sending update #{external_entity_name} (id=#{external_id}): #{mapped_connec_entity} to #{Maestrano::Connector::Rails::External.external_name}")
-    begin
-      @external_client.update_entities(mapped_connec_entity, external_id, external_entity_name)
-    rescue Exceptions::RecordNotFound => e
-      idmap = Maestrano::Connector::Rails::IdMap.find_by(organization_id: @organization.id, external_id: external_id)
-      idmap.update!(message: "The #{external_entity_name} record has been deleted in Base. Last attempt to sync on #{Time.now}", external_inactive: true)
-      Rails.logger.warn "#{e}. It is now set to inactive."
-    end
+    @external_client.update_entities(mapped_connec_entity, external_id, external_entity_name)
+  rescue Exceptions::RecordNotFound => e
+    set_deleted_entity_inactive(e, external_id)
   end
 
   def self.id_from_external_entity_hash(entity)
@@ -52,4 +50,19 @@ class Maestrano::Connector::Rails::Entity < Maestrano::Connector::Rails::EntityB
     # This method return true if entity is inactive in the external application
     false
   end
+
+  private
+
+    def readable_error(e, mapped_connec_entity)
+      err = DataParser.parse_422_error(e)
+      idmap = Maestrano::Connector::Rails::IdMap.find_by(organization_id: @organization.id, name: mapped_connec_entity['name'])
+      idmap.update!(message: err)
+      mapped_connec_entity
+    end
+
+    def set_deleted_entity_inactive(e, external_id)
+      idmap = Maestrano::Connector::Rails::IdMap.find_by(organization_id: @organization.id, external_id: external_id)
+      idmap.update!(message: "The #{external_entity_name} record has been deleted in Base. Last attempt to sync on #{Time.now}", external_inactive: true)
+      Rails.logger.warn "#{e}. It is now set to inactive."
+    end
 end
