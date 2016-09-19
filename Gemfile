@@ -1,5 +1,4 @@
 source 'https://rubygems.org'
-ruby '2.2.3', engine: 'jruby', engine_version: '9.0.5.0'
 
 gem 'rails', '~> 4.2'
 gem 'turbolinks'
@@ -14,7 +13,7 @@ gem 'config'
 gem 'rdoc', '~> 3.12'
 gem 'jeweler', '~> 2.1.1'
 
-gem 'maestrano-connector-rails', '2.0.0.pre.RC3'
+gem 'maestrano-connector-rails', '2.0.0.pre.RC4'
 
 gem 'oauth2'
 gem 'basecrm'
