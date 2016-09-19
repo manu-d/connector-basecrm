@@ -19,8 +19,10 @@ gem 'oauth2'
 gem 'basecrm'
 
 group :production, :uat do
-  gem 'activerecord-jdbcpostgresql-adapter', platforms: :jruby
-  gem 'pg', platforms: :ruby
+  # gem 'activerecord-jdbcpostgresql-adapter', platforms: :jruby
+  # gem 'pg', platforms: :ruby
+  gem 'activerecord-jdbcmysql-adapter', :platforms => :jruby
+  gem 'mysql2', :platforms => :ruby
   gem 'rails_12factor'
 end
 
