@@ -28,14 +28,14 @@ class Entities::Opportunity < Maestrano::Connector::Rails::Entity
      @stages ||= []
   end
 
-  def map_to_connec(entity, first_time_mapped = nil))
+  def map_to_connec(entity, first_time_mapped = nil)
     mapped_entity = super
     #Stages in Base are retrieved through a specific endpoint in the API.
     stage = @stages.find { |stage| stage['id'] == entity['stage_id'] }
     map_sales_stage(mapped_entity, stage) if stage
   end
 
-  def map_to_external(entity)
+  def map_to_external(entity, first_time_mapped = nil)
     mapped_entity = super
     #The sales_stages in Base are associated with a unique id. The first step in order
     #to map it to Connec! is to try matching the sales_stage directly.
