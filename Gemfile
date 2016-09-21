@@ -1,20 +1,18 @@
 ruby "2.2.3", :engine => "jruby", :engine_version => "9.0.5.0"
 source 'https://rubygems.org'
 
-gem 'rails', '4.2.4'
+gem 'rails', '~> 4.2'
+gem 'puma', require: false
+
 gem 'turbolinks'
 gem 'jquery-rails'
 gem 'coffee-rails'
-gem 'puma'
 gem 'figaro'
 gem 'tzinfo-data', platforms: [:mingw, :mswin, :jruby]
 gem 'uglifier', '>= 1.3.0'
 gem 'config'
 
-gem 'rdoc', '~> 3.12'
-gem 'jeweler', '~> 2.1.1'
-
-gem 'maestrano-connector-rails'
+gem 'maestrano-connector-rails', '~> 1.4'
 
 gem 'oauth2'
 gem 'basecrm'

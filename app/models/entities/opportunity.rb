@@ -28,7 +28,7 @@ class Entities::Opportunity < Maestrano::Connector::Rails::Entity
      @stages ||= []
   end
 
-  def map_to_connec(entity)
+  def map_to_connec(entity, first_time_mapped = nil))
     mapped_entity = super
     #Stages in Base are retrieved through a specific endpoint in the API.
     stage = @stages.find { |stage| stage['id'] == entity['stage_id'] }
