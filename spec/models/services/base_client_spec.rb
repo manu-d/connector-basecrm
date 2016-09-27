@@ -1,11 +1,6 @@
 require "spec_helper"
 
 describe AuthClient do
-
-  it "Stores the URI for the callback" do
-    expect(AuthClient::RED_URI).to match /^http.+\/auth\/baseCRM\/callback/
-  end
-
   it "Has a method #authorize that instantiates a OAuth2 object" do
     auth_params = { state: 'uid-123'}
     expect(AuthClient.authorize(auth_params)).to be_a OAuth2::Client

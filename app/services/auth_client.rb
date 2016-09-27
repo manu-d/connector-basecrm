@@ -3,9 +3,7 @@ require "singleton"
 class AuthClient
   include Singleton
 
-  RED_URI = "#{Settings.app_host}/auth/baseCRM/callback"
-
-  #Requests oauth2 code
+  # Requests oauth2 code
   def self.authorize(auth_params)
     OAuth2::Client.new(
       ENV['base_client_id'],
@@ -15,7 +13,7 @@ class AuthClient
     )
   end
 
-  #Obtains oauth2 token
+  # Obtains oauth2 token
   def self.obtain_token
     OAuth2::Client.new(
       ENV['base_client_id'],
