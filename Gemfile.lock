@@ -47,7 +47,7 @@ GEM
     arel (6.0.3)
     attr_encrypted (1.4.0)
       encryptor (~> 1.3.0)
-    autoprefixer-rails (6.4.1.1)
+    autoprefixer-rails (6.5.1)
       execjs
     basecrm (1.2.0)
       faraday (~> 0.9, >= 0.9.0)
@@ -111,7 +111,7 @@ GEM
       haml (~> 4.0.0)
       nokogiri (~> 1.6.0)
       ruby_parser (~> 3.5)
-    http-cookie (1.0.2)
+    http-cookie (1.0.3)
       domain_name (~> 0.5)
     httparty (0.14.0)
       multi_xml (>= 0.5.2)
@@ -129,14 +129,14 @@ GEM
       nokogiri (>= 1.5.9)
     macaddr (1.7.1)
       systemu (~> 2.6.2)
-    maestrano (1.0.0.pre.RC5)
+    maestrano (1.0.0.pre.RC7)
       httparty (~> 0.14)
       json (~> 1.8)
       mime-types (~> 1.25)
       nokogiri (>= 1.5.0)
       rest-client (~> 1.8)
       uuid (~> 2.3)
-    maestrano-connector-rails (1.4.0)
+    maestrano-connector-rails (2.0.0.pre.RC10)
       attr_encrypted (~> 1.4.0)
       autoprefixer-rails
       bootstrap-sass
@@ -144,19 +144,19 @@ GEM
       figaro
       haml-rails
       hash_mapper (>= 0.2.2)
-      maestrano-rails
+      maestrano-rails (= 1.0.0.pre.RC7)
       rails (~> 4.2)
       sidekiq
       sidekiq-cron
       sidekiq-unique-jobs
       sinatra
       slim
-    maestrano-rails (1.0.1)
+    maestrano-rails (1.0.0.pre.RC7)
       haml-rails
       jquery-rails
-      maestrano (= 1.0.0.pre.RC5)
+      maestrano (= 1.0.0.pre.RC7)
       mongoid
-      rails
+      rails (~> 4.2)
     mail (2.6.4)
       mime-types (>= 1.16, < 4)
     mime-types (1.25.1)
@@ -247,22 +247,22 @@ GEM
       rspec-mocks (~> 3.5.0)
       rspec-support (~> 3.5.0)
     rspec-support (3.5.0)
-    ruby_parser (3.8.2)
+    ruby_parser (3.8.3)
       sexp_processor (~> 4.1)
     rufus-scheduler (3.2.2)
     sass (3.4.22)
     sexp_processor (4.7.0)
     shoulda-matchers (3.1.1)
       activesupport (>= 4.0.0)
-    sidekiq (4.2.1)
+    sidekiq (4.2.2)
       concurrent-ruby (~> 1.0)
       connection_pool (~> 2.2, >= 2.2.0)
       rack-protection (~> 1.5)
       redis (~> 3.2, >= 3.2.1)
-    sidekiq-cron (0.4.3)
+    sidekiq-cron (0.4.4)
       redis-namespace (>= 1.5.2)
       rufus-scheduler (>= 2.0.24)
-      sidekiq (>= 4.0.0)
+      sidekiq (>= 4.2.1)
     sidekiq-unique-jobs (4.0.18)
       sidekiq (>= 2.6)
       thor
@@ -326,7 +326,7 @@ DEPENDENCIES
   factory_girl_rails
   figaro
   jquery-rails
-  maestrano-connector-rails (~> 1.4)
+  maestrano-connector-rails (= 2.0.0.pre.RC10)
   oauth2
   pg
   puma
@@ -341,8 +341,5 @@ DEPENDENCIES
   tzinfo-data
   uglifier (>= 1.3.0)
 
-RUBY VERSION
-   ruby 2.2.3p173
-
 BUNDLED WITH
-   1.12.5
+   1.13.5

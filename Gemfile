@@ -1,4 +1,3 @@
-ruby "2.2.3", :engine => "jruby", :engine_version => "9.0.5.0"
 source 'https://rubygems.org'
 
 gem 'rails', '~> 4.2'
@@ -12,7 +11,7 @@ gem 'tzinfo-data', platforms: [:mingw, :mswin, :jruby]
 gem 'uglifier', '>= 1.3.0'
 gem 'config'
 
-gem 'maestrano-connector-rails', '~> 1.4'
+gem 'maestrano-connector-rails', '2.0.0.pre.RC10'
 
 gem 'oauth2'
 gem 'basecrm'
