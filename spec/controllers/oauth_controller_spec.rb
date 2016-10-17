@@ -71,7 +71,7 @@ describe OauthController, :type => :controller do
         before {
           allow_any_instance_of(Maestrano::Connector::Rails::SessionHelper).to receive(:is_admin?).and_return(true)
           allow_any_instance_of(OAuth2::Strategy::AuthCode).to receive(:get_token) { token}
-          expect_any_instance_of(Organization).to receive(:update_omniauth) { organization.oauth_uid = "test-uid"}
+          allow(OauthController).to receive(:update_organization_omniauth) { organization.oauth_uid = "test-uid"}
           allow(BaseCRM::Client).to receive(:new).with(access_token: "123") { client}
           allow(client).to receive(:accounts) { client}
           allow(client).to receive(:self)

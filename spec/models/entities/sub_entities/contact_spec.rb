@@ -44,7 +44,7 @@ describe Entities::SubEntities::Contact do
 
       let (:mapped_external_hash) {
         {
-          :id => [{"id"=>134706023, "provider"=>"this_app", "realm"=>"sfuiy765"}],
+          :id => [{"id"=>134706023, "provider"=>organization.oauth_provider, "realm"=>organization.oauth_uid}],
           :first_name => "John",
           :last_name => "Smith",
           :job_title => "CTO",
@@ -97,7 +97,7 @@ describe Entities::SubEntities::Contact do
 
       let (:mapped_external_hash) {
         {
-          :id => [{"id"=>134706023, "provider"=>"this_app", "realm"=>"sfuiy765"}],
+          :id => [{"id"=>134706023, "provider"=>organization.oauth_provider, "realm"=>organization.oauth_uid}],
           :name => "A Company",
           :industry => "ITC",
           :email => {

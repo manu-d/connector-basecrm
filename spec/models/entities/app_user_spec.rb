@@ -36,7 +36,7 @@ describe 'instance methods' do
 
     let (:mapped_external_hash) {
       {
-        "id" => [{"id"=>123456, "provider"=>"this_app", "realm"=>"sfuiy765"}],
+        "id" => [{"id"=>123456, "provider"=>organization.oauth_provider, "realm"=>organization.oauth_uid}],
         "first_name" => "John",
         "last_name" => "Doe",
         "is_admin" => true,
