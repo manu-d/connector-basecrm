@@ -14,7 +14,7 @@ describe Entities::Item do
   describe 'instance methods' do
 
     let(:organization) { create(:organization) }
-    let(:connec_client) { Maestrano::Connector::Rails::ConnecHelper.get_client(organization) }
+    let(:connec_client) { Maestrano::Connec::Client[organization.tenant].new(organization.uid) }
     let(:external_client) { Maestrano::Connector::Rails::External.get_client(organization) }
     let(:opts) { {} }
     subject { Entities::Item.new(organization, connec_client, external_client, opts) }
