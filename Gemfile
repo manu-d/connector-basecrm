@@ -11,7 +11,7 @@ gem 'tzinfo-data', platforms: [:mingw, :mswin, :jruby]
 gem 'uglifier', '>= 1.3.0'
 gem 'config'
 
-gem 'maestrano-connector-rails', '2.0.0.pre.RC10'
+gem 'maestrano-connector-rails', '2.0.0.pre.RC11'
 
 gem 'oauth2'
 gem 'basecrm'
