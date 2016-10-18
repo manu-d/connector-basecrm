@@ -18,7 +18,7 @@ gem 'basecrm'
 
 group :production, :uat do
   gem 'activerecord-jdbcpostgresql-adapter', platforms: :jruby
-  gem 'pg', platforms: :ruby
+  gem 'mysql2', :platforms => :ruby
   gem 'rails_12factor'
 end
 
