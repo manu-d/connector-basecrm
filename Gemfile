@@ -1,7 +1,11 @@
 source 'https://rubygems.org'
 
 gem 'rails', '~> 4.2'
+
 gem 'puma', require: false
+gem 'sinatra', require: false
+gem 'sidekiq'
+gem 'sidekiq-cron'
 
 gem 'turbolinks'
 gem 'jquery-rails'
@@ -18,7 +22,7 @@ gem 'basecrm'
 
 group :production, :uat do
   gem 'activerecord-jdbcpostgresql-adapter', platforms: :jruby
-  gem 'mysql2', :platforms => :ruby
+  gem 'mysql2', platforms: :ruby
   gem 'rails_12factor'
 end
 
