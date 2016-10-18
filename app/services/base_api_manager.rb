@@ -34,7 +34,7 @@ class BaseAPIManager
       entities
     end
   rescue => e
-    Rails.logger.warn "Error while fetching #{entity_name.pluralize}. Error: #{e}"
+    Maestrano::Connector::Rails::ConnectorLogger.log('warn', @organization, "Error while fetching #{entity_name.pluralize}. Error: #{e}")
     raise "Error while fetching #{entity_name}. Error: #{e}"
   end
 
@@ -104,7 +104,7 @@ class BaseAPIManager
 
     def standard_rescue(e, external_entity_name)
       err = e.respond_to?(:response) ? e.response : e
-      Rails.logger.warn "Error while posting to #{external_entity_name}: #{err}"
+      Maestrano::Connector::Rails::ConnectorLogger.log('warn', @organization, "Error while posting to #{external_entity_name}: #{err}")
       raise "Error while sending data: #{err}"
     end
 
