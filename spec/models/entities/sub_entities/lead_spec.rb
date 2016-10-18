@@ -61,8 +61,8 @@ describe Entities::SubEntities::Lead do
 
       let(:mapped_external_hash) {
         {
-          :id => [{"id"=>1903091207, "provider"=>"this_app", "realm"=>"sfuiy765"}],
-          :assignee_id => [{"id"=>960788, "provider"=>"this_app", "realm"=>"sfuiy765"}],
+          :id => [{"id"=>1903091207, "provider"=>organization.oauth_provider, "realm"=>organization.oauth_uid}],
+          :assignee_id => [{"id"=>960788, "provider"=>organization.oauth_provider, "realm"=>organization.oauth_uid}],
           :first_name => "John",
           :last_name => "Lead",
           :job_title => "CTO",
@@ -136,8 +136,8 @@ describe Entities::SubEntities::Lead do
 
       let(:mapped_external_hash) {
         {
-          :id => [{"id"=>1903091859, "provider"=>"this_app", "realm"=>"sfuiy765"}],
-          :assignee_id => [{"id"=>960788, "provider"=>"this_app", "realm"=>"sfuiy765"}],
+          :id => [{"id"=>1903091859, "provider"=>organization.oauth_provider, "realm"=>organization.oauth_uid}],
+          :assignee_id => [{"id"=>960788, "provider"=>organization.oauth_provider, "realm"=>organization.oauth_uid}],
           :name => "Company Lead",
           :industry => "ITC",
           :email => {

@@ -93,7 +93,7 @@ describe 'instance methods' do
           "total_amount" => 500.0
         },
         "sales_stage" => "Incoming",
-        "lead_id" => [{"id"=>135906741, "provider"=>"this_app", "realm"=>"sfuiy765"}],
+        "lead_id" => [{"id"=>135906741, "provider"=>organization.oauth_provider, "realm"=>organization.oauth_uid}],
         "probability" => 0,
         "sales_stage_changes" => [
           {
