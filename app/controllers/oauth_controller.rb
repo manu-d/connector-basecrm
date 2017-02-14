@@ -1,36 +1,30 @@
+# frozen_string_literal: true
 class OauthController < ApplicationController
+  # TODO
+  # Routes for this controller are not provided by the gem and
+  # should be set according to your needs
 
   def request_omniauth
-    if is_admin
-      auth_params = {
-        state: current_organization.uid
-      }
-      client = AuthClient.authorize(QueryParamsManager.query_params(auth_params))
-      redirect_to client.auth_code.authorize_url(redirect_uri: AuthClient::RED_URI )
-    else
-      redirect_to root_url
-    end
+    return redirect_to root_url unless is_admin
+
+    # TODO
+    # Perform oauth request here. The oauth process should be able to
+    # remember the organization, either by a param in the request or using
+    # a session
   end
 
   def create_omniauth
-    org_uid = params[:state]
-    organization = Maestrano::Connector::Rails::Organization.find_by_uid_and_tenant(org_uid, current_user.tenant)
-    if organization && is_admin?(current_user, organization)
-      client = AuthClient.obtain_token
-      if params[:code].present?
-        token = client.auth_code.get_token(params[:code], redirect_uri: AuthClient::RED_URI)
-        OauthController.update_organization_omniauth(organization, token)
-      end
-    end
-    redirect_to root_url
+    return redirect_to root_url unless is_admin
+
+    # TODO
+    # Update current_organization with oauth params
+    # Should at least set oauth_uid, oauth_token and oauth_provider
   end
 
   def destroy_omniauth
-    organization = Maestrano::Connector::Rails::Organization.find_by_id(params[:organization_id])
+    return redirect_to root_url unless is_admin
 
-    if organization && is_admin?(current_user, organization)
-      organization.clear_omniauth
-    end
+    current_organization.clear_omniauth
 
     redirect_to root_url
   end
