@@ -1,13 +1,15 @@
+/ TODO
+/ Replace ApplicationName
 .home
   .banners
     .row
       .col-md-10.col-md-offset-2
-        %h2 BaseCRM Connector
+        %h1 Basecrm Connector
         %p
           -if current_organization
-            Link your company <strong>#{current_organization.name} (#{current_organization.uid})</strong> to BaseCRM to get your business in synch. Check the status of your connection on this screen.
+            Link your company <strong>#{current_organization.name} (#{current_organization.uid})</strong> to Basecrm to get your business in synch. Check the status of your connection on this screen.
           -else
-            Link your account to BaseCRM to get your business in synch. Check the status of your connection on this screen.
+            Link your account to Basecrm to get your business in synch. Check the status of your connection on this screen.
 
   .container
     - if current_user
@@ -21,17 +23,17 @@
           %span.badge.link-step-badge
             1
         .col-md-6.link-step-description
-          %h
+          %p
             - if current_organization.oauth_uid
-              Your BaseCRM account <strong>#{current_organization.oauth_name} (#{current_organization.oauth_uid})</strong> is currently linked
+              Your Basecrm account <strong>#{current_organization.oauth_name} (#{current_organization.oauth_uid})</strong> is currently linked
             - else
-              Your BaseCRM account is not linked
+              Your Basecrm account is not linked
         .col-md-2.col-md-offset-3.text-center.link-step-action
           - if current_organization.oauth_uid
             = link_to "Disconnect", signout_omniauth_path(organization_id: current_organization.id), class: "btn btn-warning btn-lg #{is_admin ? '' : 'disabled'}"
           - else
             - if is_admin
-              = link_to "Link to BaseCRM", "/auth/BaseCRM/request?org_uid=#{current_organization.uid}", class: 'btn btn-warning btn-lg'
+              = link_to "Link to Basecrm", "/auth/Basecrm/request?org_uid=#{current_organization.uid}", class: 'btn btn-warning btn-lg'
               %br
               %small If you don’t have an account #{link_to 'create yours here', Maestrano::Connector::Rails::External.create_account_link(current_organization || nil)}
 
@@ -42,22 +44,30 @@
           .col-md-1.text-center.link-step-number
             %span.badge.link-step-badge 2
           .col-md-9.link-step-description
-            %h You can customize which entities are synchronized by the connector:
+            %p You can customize which entities are synchronized by the connector:
+            %p (#{image_tag "logos/to_connec.png", class: "small-image"} : from Basecrm to Connec! and #{image_tag "logos/to_external.png", class: "small-image"} : from Connec! to Basecrm)
             .spacer1
             .row
               .col-md-11.col-md-offset-1.center
-                .col-md-4.col-md-offset-1
-                  BaseCRM wording
-                .col-md-4
-                  Universal wording
+                .row
+                  .col-md-1
+                    =image_tag "logos/to_connec.png", class: "image"
+                  .col-md-1
+                    =image_tag "logos/to_external.png", class: "image"
+                  .col-md-4
+                    Vend wording
+                  .col-md-3
+                    Universal wording
             .spacer1
             .row
               .col-md-11.col-md-offset-1
                 - current_organization.displayable_synchronized_entities.each do |k, v|
                   .row.sync-entity
                     .col-md-1.link-step-action
-                      %input{type: "checkbox", id: "#{k}", name: "#{k}", checked: v[:value]}
-                    %label.col-md-8{:for => "#{k}", style: 'padding-top: 5px;'}
+                      #{check_box("#{k}", "to_connec", {checked: (v[:can_push_to_connec] || v[:can_push_to_external]) && !current_organization.pull_disabled, onclick: "return !#{k}_to_external.checked;", disabled: current_organization.pull_disabled})}
+                    .col-md-1.link-step-action
+                      #{check_box("#{k}", "to_external", {checked: v[:can_push_to_external] && !current_organization.push_disabled, onchange: "#{k}_to_connec.checked = #{!current_organization.pull_disabled};", disabled: current_organization.push_disabled})}
+                    %label.col-md-7{:for => "#{k}", style: 'padding-top: 5px;'}
                       .col-md-6
                         #{v[:external_name]}
                       .col-md-6
@@ -79,7 +89,7 @@
               .col-md-6
                 %small#historical-data-display-unchecked{style: "display: #{current_organization.historical_data ? 'none' : 'block'}"} Only data created after #{(current_organization.date_filtering_limit && current_organization.date_filtering_limit.utc || Time.now.utc).to_formatted_s(:long_ordinal)} will be synchronized
                 %small#historical-data-display-checked{style: "display: #{!current_organization.historical_data ? 'none' : 'block'}"}
-                  Synchronizing your historical data will share all data in BaseCRM. This action is not reversible. Want to know more? Check #{link_to 'here', 'https://maestrano.atlassian.net/wiki/display/UKB/How+Connec%21+manages+Historical+Data+Sharing'}
+                  Synchronizing your historical data will share all data in Basecrm. This action is not reversible. Want to know more? Check #{link_to 'here', 'https://maestrano.atlassian.net/wiki/display/UKB/How+Connec%21+manages+Historical+Data+Sharing'}
 
           .spacer1
           .row
@@ -90,7 +100,7 @@
         .spacer2
         .row
           .col-md-4.col-md-offset-4.text-center
-            = link_to 'Go to BaseCRM', home_redirect_to_external_path, class: 'btn btn-lg btn-primary'
+            = link_to 'Go to Basecrm', home_redirect_to_external_path, class: 'btn btn-lg btn-primary'
 
     - else
       .row
